@@ -10,8 +10,8 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Подключен шрифт Belleza как аналог La Femina для изящных букв -->
-    <link href="https://fonts.googleapis.com/css2?family=Belleza&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Подключен шрифт Noto Serif -->
+    <link href="https://fonts.googleapis.com/css2?family=Belleza&family=Great+Vibes&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
             /* Холодные оттенки */
@@ -40,10 +40,12 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+            /* Настройки для квадратного фото 1024x1024 */
             background-image: url('photo.jpg');
             background-size: cover; 
             background-position: center;
             background-repeat: no-repeat;
+            background-attachment: scroll; /* Для лучшей производительности на мобильных */
             background-color: #ffffff; 
         }
 
@@ -63,10 +65,10 @@
             text-shadow: 0 2px 15px rgba(0,0,0,0.5);
         }
 
-        /* Шрифт La Femina (Belleza) для инициалов */
+        /* Обновлено: Шрифт Noto Serif для инициалов, вес изменен на 400 (не жирный) */
         .hero-initials {
-            font-family: 'Belleza', sans-serif;
-            letter-spacing: 0.15em;
+            font-family: 'Noto Serif', serif;
+            letter-spacing: 0.05em;
             font-weight: 400;
             line-height: 1;
             text-transform: uppercase;
@@ -87,7 +89,7 @@
         }
 
         .serif {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Noto Serif', serif;
         }
 
         .text-accent-red {
@@ -211,13 +213,12 @@
         <div class="hero-content">
             <div data-aos="fade-down" data-aos-duration="1500">
                 <span class="text-white text-lg md:text-xl uppercase tracking-[0.4em] mb-6 block font-light">Приглашаем вас на свадьбу</span>
-                <!-- Шрифт La Femina для инициалов -->
+                <!-- Инициалы теперь не жирные (weight 400) -->
                 <h1 class="hero-initials text-7xl md:text-[9rem] text-white my-6">К & А</h1>
             </div>
 
             <div data-aos="fade-up" data-aos-delay="500" data-aos-duration="1200">
                 <div class="divider"></div>
-                <!-- Обновленная дата: 17 Сентября 2026 -->
                 <p class="serif italic text-2xl md:text-4xl text-white">17 Сентября 2026</p>
                 <p class="mt-6 text-white uppercase tracking-[0.3em] text-sm font-bold">г. Москва</p>
             </div>
@@ -230,13 +231,11 @@
         </div>
     </header>
 
-    <!-- Calendar Section -->
+    <!-- Остальные секции без изменений -->
     <section id="details" class="py-24 overflow-hidden">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-5xl md:text-6xl text-accent-red mb-16" data-aos="fade-up">Сохраните дату</h2>
-            
             <div class="calendar-container" data-aos="flip-left" data-aos-duration="1200">
-                <!-- Обновленный заголовок календаря: Сентябрь 2026 -->
                 <div class="serif text-xl mb-6 text-accent-green font-bold">Сентябрь 2026</div>
                 <div class="calendar-grid">
                     <div class="calendar-day-name">Пн</div>
@@ -246,8 +245,6 @@
                     <div class="calendar-day-name">Пт</div>
                     <div class="calendar-day-name">Сб</div>
                     <div class="calendar-day-name">Вс</div>
-                    
-                    <!-- Сетка для Сентября 2026 (начинается с вторника) -->
                     <div class="calendar-day"></div>
                     <div class="calendar-day text-gray-300">1</div>
                     <div class="calendar-day text-gray-300">2</div>
@@ -255,7 +252,6 @@
                     <div class="calendar-day text-gray-300">4</div>
                     <div class="calendar-day text-gray-300">5</div>
                     <div class="calendar-day text-gray-300">6</div>
-                    
                     <div class="calendar-day text-gray-300">7</div>
                     <div class="calendar-day text-gray-300">8</div>
                     <div class="calendar-day text-gray-300">9</div>
@@ -263,11 +259,9 @@
                     <div class="calendar-day text-gray-300">11</div>
                     <div class="calendar-day text-gray-300">12</div>
                     <div class="calendar-day text-gray-300">13</div>
-                    
                     <div class="calendar-day text-gray-300">14</div>
                     <div class="calendar-day text-gray-300">15</div>
                     <div class="calendar-day text-gray-300">16</div>
-                    <!-- Обновленная дата свадьбы -->
                     <div class="calendar-day wedding-day font-bold">
                         17
                         <span class="heart-marker">❤</span>
@@ -275,21 +269,18 @@
                     <div class="calendar-day text-gray-300">18</div>
                     <div class="calendar-day text-gray-300">19</div>
                     <div class="calendar-day text-gray-300">20</div>
-                    
                     <div class="calendar-day text-gray-300">21</div><div class="calendar-day text-gray-300">22</div><div class="calendar-day text-gray-300">23</div>
                     <div class="calendar-day text-gray-300">24</div><div class="calendar-day text-gray-300">25</div><div class="calendar-day text-gray-300">26</div>
                     <div class="calendar-day text-gray-300">27</div><div class="calendar-day text-gray-300">28</div><div class="calendar-day text-gray-300">29</div>
                     <div class="calendar-day text-gray-300">30</div>
                 </div>
             </div>
-            
             <p class="mt-12 text-gray-700 max-w-lg mx-auto leading-relaxed" data-aos="fade-up">
                 Этот день станет началом новой общей истории Кирилла и Анны. Мы будем бесконечно счастливы разделить этот момент вместе с вами!
             </p>
         </div>
     </section>
 
-    <!-- Schedule Section -->
     <section class="py-24">
         <div class="container mx-auto px-4">
             <h2 class="text-center text-5xl md:text-6xl text-accent-red mb-20" data-aos="fade-down">Программа дня</h2>
@@ -319,20 +310,17 @@
         </div>
     </section>
 
-    <!-- RSVP Section -->
     <section class="py-24">
         <div class="container mx-auto px-4 max-w-lg">
             <div class="text-center mb-16" data-aos="zoom-in">
                 <h2 class="text-5xl md:text-6xl text-accent-red mb-6">Ждем вас!</h2>
                 <p class="text-gray-600 italic font-medium text-sm">Пожалуйста, подтвердите присутствие до 1 августа</p>
             </div>
-            
             <form id="rsvpForm" class="space-y-8" data-aos="fade-up">
                 <div class="relative">
                     <input type="text" id="name" required placeholder=" " class="peer w-full border-b-2 border-accent-green p-4 focus:outline-none focus:border-accent-red transition-colors bg-transparent">
                     <label for="name" class="absolute left-4 top-4 text-gray-500 pointer-events-none transition-all peer-focus:-top-2 peer-focus:text-xs peer-focus:text-accent-green peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:text-xs">Ваше Имя и Фамилия</label>
                 </div>
-                
                 <div class="space-y-4">
                     <span class="block text-xs font-bold text-gray-500 uppercase tracking-widest">Вы придете?</span>
                     <div class="flex flex-col gap-4">
@@ -346,12 +334,8 @@
                         </label>
                     </div>
                 </div>
-
-                <button type="submit" class="w-full text-white py-5 rounded-full shadow-lg btn-submit uppercase tracking-[0.2em] font-bold text-sm">
-                    Подтвердить
-                </button>
+                <button type="submit" class="w-full text-white py-5 rounded-full shadow-lg btn-submit uppercase tracking-[0.2em] font-bold text-sm">Подтвердить</button>
             </form>
-            
             <div id="thankYouMessage" class="hidden text-center p-12 bg-white rounded-3xl border border-accent-green/20" data-aos="zoom-in">
                 <div class="text-4xl mb-4">✨</div>
                 <h3 class="serif text-3xl text-accent-green mb-4">Ваш ответ принят!</h3>
@@ -360,28 +344,19 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="py-16 bg-white text-center border-t border-gray-100 mx-8 mb-8 rounded-2xl shadow-sm">
         <p class="cursive text-4xl text-accent-red mb-4">С любовью, К & А</p>
         <p class="text-gray-500 text-xs tracking-widest uppercase">2026 • Кирилл & Анна • Wedding Day</p>
     </footer>
 
     <script>
-        // Initialize Animations
-        AOS.init({
-            duration: 1200,
-            once: true,
-            offset: 100
-        });
-
-        // RSVP Form Handling
+        AOS.init({ duration: 1200, once: true, offset: 100 });
         document.getElementById('rsvpForm').addEventListener('submit', function(e) {
             e.preventDefault();
             this.style.opacity = '0';
             setTimeout(() => {
                 this.classList.add('hidden');
-                const msg = document.getElementById('thankYouMessage');
-                msg.classList.remove('hidden');
+                document.getElementById('thankYouMessage').classList.remove('hidden');
             }, 500);
         });
     </script>
