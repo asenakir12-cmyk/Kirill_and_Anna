@@ -154,7 +154,7 @@
             position: relative;
             background: var(--cool-emerald-green) url('https://avatars.mds.yandex.net/get-images-cbir/3226257/5hQh2mconQQbl9-e_izgPg390/orig') no-repeat center center;
             background-size: cover;
-            padding: 5rem 2rem;
+            padding: 5rem 2rem 3rem; /* Немного изменил нижний отступ */
             border-left: 4px solid var(--cool-berry-red);
             text-align: center;
             color: white;
@@ -200,6 +200,24 @@
             transform: translateY(-2px);
         }
 
+        /* Обновленный контейнер карты: меньше ширина, острые углы, фильтр */
+        .map-iframe-wrapper {
+            margin: 2.5rem auto 0;
+            width: 260px; /* Чуть больше ширины кнопки (220px) */
+            max-width: 90%;
+            height: 180px; /* Уменьшенная высота */
+            border-radius: 0; /* Острые углы */
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+            filter: sepia(30%) hue-rotate(80deg) saturate(60%) brightness(80%); /* Зеленоватый и приглушенный тон */
+            transition: filter 0.3s ease;
+        }
+
+        .map-iframe-wrapper:hover {
+            filter: sepia(10%) hue-rotate(80deg) saturate(80%) brightness(90%);
+        }
+
         .timeline-item {
             position: relative;
             padding-left: 2rem;
@@ -229,7 +247,7 @@
 
         @media (max-width: 640px) {
             .hero-section h1 { font-size: 5rem; }
-            .location-card { padding: 4rem 1.5rem; }
+            .location-card { padding: 4rem 1.5rem 2rem; }
         }
     </style>
 </head>
@@ -283,7 +301,7 @@
                     <img src="photo2.jpg" alt="[Фото пары]" class="secondary-photo" onerror="this.style.display='none';">
                 </div>
 
-                <!-- Карточка локации (без встроенной карты) -->
+                <!-- Карточка локации (с интерактивной картой) -->
                 <div class="location-card" data-aos="fade-up">
                     <span class="text-xs tracking-[0.3em] uppercase opacity-80 mb-4 block">Место встречи</span>
                     <h3 class="serif text-4xl mb-2">Голицын Клуб</h3>
@@ -297,6 +315,19 @@
                     <a href="https://maps.app.goo.gl/g533tmErbQ3zAUQb8" target="_blank" class="map-btn-link">
                         Открыть навигатор
                     </a>
+
+                    <!-- Интерактивная карта с маркером, уменьшенная и стилизованная -->
+                    <div class="map-iframe-wrapper">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2255.452654316089!2d36.98806207736689!3d55.57680070529881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b53995f5431799%3A0xe7a38753e9a59b64!2z0JPQvtC70LjRhtGL0L0g0JrQu9GD0LE!5e0!3m2!1sru!2sru!4v1714560000000!5m2!1sru!2sru&q=Голицын+Клуб" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
                 </div>
             </div>
         </div>
