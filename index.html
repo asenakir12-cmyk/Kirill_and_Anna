@@ -155,7 +155,7 @@
         /* ЭЛЕГАНТНАЯ НАДПИСЬ ПОД КАЛЕНДАРЕМ */
         .quote-block {
             position: relative;
-            padding: 2.5rem 1rem;
+            padding: 2.5rem 1rem 1rem 1rem;
             margin-top: 1rem;
         }
         
@@ -165,6 +165,20 @@
             line-height: 1.8;
             color: #1a1a1a; /* Элегантный черный */
             letter-spacing: 0.02em;
+        }
+
+        .secondary-photo-container {
+            max-width: 500px;
+            margin: 2rem auto 0;
+            padding: 0 10px;
+        }
+
+        .secondary-photo {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            display: block;
+            image-rendering: -webkit-optimize-contrast;
         }
 
         .divider {
@@ -288,9 +302,14 @@
             <div class="quote-block max-w-2xl mx-auto" data-aos="fade-up">
                 <p class="quote-text">
                     Мы очень хотим разделить с Вами <br class="hidden md:block">
-                    самый важный день в нашей жизни<br>
-                    — день нашей свадьбы!
+                    самый важный день в нашей жизни — <br>
+                    день нашей свадьбы!
                 </p>
+                
+                <!-- Второе фото без рамок -->
+                <div class="secondary-photo-container" data-aos="fade-up" data-aos-delay="200">
+                    <img src="photo2.jpg" alt="[Наше фото]" class="secondary-photo" onerror="this.style.display='none';">
+                </div>
             </div>
         </div>
     </section>
