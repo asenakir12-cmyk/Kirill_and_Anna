@@ -154,7 +154,7 @@
             position: relative;
             background: var(--cool-emerald-green) url('https://avatars.mds.yandex.net/get-images-cbir/3226257/5hQh2mconQQbl9-e_izgPg390/orig') no-repeat center center;
             background-size: cover;
-            padding: 5rem 2rem 3rem; /* Немного изменил нижний отступ */
+            padding: 5rem 2rem 3rem; 
             border-left: 4px solid var(--cool-berry-red);
             text-align: center;
             color: white;
@@ -200,17 +200,17 @@
             transform: translateY(-2px);
         }
 
-        /* Обновленный контейнер карты: меньше ширина, острые углы, фильтр */
+        /* Контейнер карты: фиксированная ширина, острые углы, фильтр */
         .map-iframe-wrapper {
             margin: 2.5rem auto 0;
-            width: 260px; /* Чуть больше ширины кнопки (220px) */
+            width: 260px; 
             max-width: 90%;
-            height: 180px; /* Уменьшенная высота */
-            border-radius: 0; /* Острые углы */
+            height: 180px; 
+            border-radius: 0; 
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             border: 1px solid rgba(255,255,255,0.2);
-            filter: sepia(30%) hue-rotate(80deg) saturate(60%) brightness(80%); /* Зеленоватый и приглушенный тон */
+            filter: sepia(30%) hue-rotate(80deg) saturate(60%) brightness(80%); 
             transition: filter 0.3s ease;
         }
 
@@ -248,6 +248,12 @@
         @media (max-width: 640px) {
             .hero-section h1 { font-size: 5rem; }
             .location-card { padding: 4rem 1.5rem 2rem; }
+            /* Стили для переноса заголовка на две строки */
+            .mobile-title-break {
+                display: block;
+                line-height: 1.1;
+                margin-bottom: 0.25rem;
+            }
         }
     </style>
 </head>
@@ -258,8 +264,11 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <div data-aos="fade-down" data-aos-duration="1500">
-                <span class="text-white text-lg uppercase tracking-[0.4em] mb-6 block font-light">Приглашаем вас на свадьбу</span>
-                <h1 class="hero-initials text-7xl md:text-[9rem] text-white my-6">К & А</h1>
+                <h1 class="hero-initials text-7xl md:text-[9rem] text-white mt-6 mb-2">К & А</h1>
+                <!-- Имена более строгим шрифтом -->
+                <p class="serif uppercase tracking-[0.2em] text-xl md:text-3xl text-white mb-12">Кирилл и Анна</p>
+                <!-- Обновленная надпись под именами с увеличенным отступом сверху за счет mb-12 выше -->
+                <span class="text-white text-xs md:text-sm uppercase tracking-[0.4em] mb-8 block font-light opacity-80">Приглашают вас на свадьбу</span>
             </div>
             <div data-aos="fade-up" data-aos-delay="500">
                 <p class="serif italic text-2xl md:text-4xl text-white">17 Сентября 2026</p>
@@ -270,7 +279,10 @@
     <!-- Основной блок -->
     <section class="py-24 bg-white">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-5xl md:text-6xl text-accent-red mb-16" data-aos="fade-up">Дорогие родные и близкие!</h2>
+            <!-- Измененный заголовок с переносом на мобильных -->
+            <h2 class="text-5xl md:text-6xl text-accent-red mb-16" data-aos="fade-up">
+                <span class="mobile-title-break">Дорогие</span> родные и близкие!
+            </h2>
             
             <!-- Календарь -->
             <div class="calendar-container mb-12" data-aos="zoom-in">
@@ -301,7 +313,7 @@
                     <img src="photo2.jpg" alt="[Фото пары]" class="secondary-photo" onerror="this.style.display='none';">
                 </div>
 
-                <!-- Карточка локации (с интерактивной картой) -->
+                <!-- Карточка локации -->
                 <div class="location-card" data-aos="fade-up">
                     <span class="text-xs tracking-[0.3em] uppercase opacity-80 mb-4 block">Место встречи</span>
                     <h3 class="serif text-4xl mb-2">Голицын Клуб</h3>
@@ -316,10 +328,10 @@
                         Открыть навигатор
                     </a>
 
-                    <!-- Интерактивная карта с маркером, уменьшенная и стилизованная -->
+                    <!-- Интерактивная карта, привязанная к адресу -->
                     <div class="map-iframe-wrapper">
                         <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2255.452654316089!2d36.98806207736689!3d55.57680070529881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b53995f5431799%3A0xe7a38753e9a59b64!2z0JPQvtC70LjRhtGL0L0g0JrQu9GD0LE!5e0!3m2!1sru!2sru!4v1714560000000!5m2!1sru!2sru&q=Голицын+Клуб" 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2255.451!2d36.988062!3d55.576800!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTXCsDM0JzM2LjUiTiAzNsKwNTknMTcuMCJF!5e0!3m2!1sru!2sru!4v1714560000000!5m2!1sru!2sru&q=Минское+шоссе+45+Голицыно" 
                             width="100%" 
                             height="100%" 
                             style="border:0;" 
@@ -394,10 +406,8 @@
     </footer>
 
     <script>
-        // Инициализация анимаций
         AOS.init({ duration: 1200, once: true });
 
-        // Обработка формы
         document.getElementById('rsvpForm').addEventListener('submit', function(e) {
             e.preventDefault();
             this.classList.add('hidden');
