@@ -10,7 +10,8 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Подключен шрифт Belleza как аналог La Femina для изящных букв -->
+    <link href="https://fonts.googleapis.com/css2?family=Belleza&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
             /* Холодные оттенки */
@@ -22,14 +23,14 @@
         }
 
         body {
-            /* Шрифт изменен на Helvetica Neue */
+            /* Основной шрифт Helvetica Neue */
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             background-color: #f9f9f9;
             color: #333;
             overflow-x: hidden;
         }
 
-        /* Главный экран: фото полностью вписано в фон */
+        /* Главный экран: фото расширяется под любой экран (cover) */
         .hero-section {
             position: relative;
             height: 100vh;
@@ -40,7 +41,7 @@
             justify-content: center;
             text-align: center;
             background-image: url('photo.jpg');
-            background-size: contain; 
+            background-size: cover; 
             background-position: center;
             background-repeat: no-repeat;
             background-color: #ffffff; 
@@ -50,7 +51,7 @@
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.2); 
+            background: rgba(0, 0, 0, 0.35); 
             z-index: 1;
         }
 
@@ -59,20 +60,29 @@
             z-index: 2;
             color: white;
             padding: 0 20px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 15px rgba(0,0,0,0.5);
+        }
+
+        /* Шрифт La Femina (Belleza) для инициалов */
+        .hero-initials {
+            font-family: 'Belleza', sans-serif;
+            letter-spacing: 0.15em;
+            font-weight: 400;
+            line-height: 1;
+            text-transform: uppercase;
         }
 
         /* Белые полупрозрачные подложки для блоков */
         section:not(.hero-section) {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.95);
             margin: 2rem;
             border-radius: 20px;
             border: 1px solid rgba(26, 71, 42, 0.05);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
-        /* Каллиграфический шрифт остается только для заголовков */
-        h1, h2, .cursive {
+        /* Каллиграфический шрифт остается только для декоративных заголовков */
+        h2, .cursive {
             font-family: 'Great Vibes', cursive;
         }
 
@@ -149,7 +159,7 @@
 
         .divider {
             height: 1px;
-            width: 120px;
+            width: 140px;
             background: linear-gradient(90deg, transparent, white, transparent);
             margin: 20px auto;
         }
@@ -188,7 +198,7 @@
                 margin: 1rem;
             }
             .hero-section h1 {
-                font-size: 6rem;
+                font-size: 5rem;
             }
         }
     </style>
@@ -200,18 +210,20 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <div data-aos="fade-down" data-aos-duration="1500">
-                <span class="text-white text-lg md:text-xl uppercase tracking-[0.3em] mb-4 block font-light">Приглашаем вас на свадьбу</span>
-                <h1 class="text-8xl md:text-9xl text-white my-4">К & А</h1>
+                <span class="text-white text-lg md:text-xl uppercase tracking-[0.4em] mb-6 block font-light">Приглашаем вас на свадьбу</span>
+                <!-- Шрифт La Femina для инициалов -->
+                <h1 class="hero-initials text-7xl md:text-[9rem] text-white my-6">К & А</h1>
             </div>
 
             <div data-aos="fade-up" data-aos-delay="500" data-aos-duration="1200">
                 <div class="divider"></div>
-                <p class="serif italic text-2xl md:text-3xl text-white">14 Сентября 2024</p>
-                <p class="mt-4 text-white uppercase tracking-widest text-sm font-bold">г. Москва</p>
+                <!-- Обновленная дата: 17 Сентября 2026 -->
+                <p class="serif italic text-2xl md:text-4xl text-white">17 Сентября 2026</p>
+                <p class="mt-6 text-white uppercase tracking-[0.3em] text-sm font-bold">г. Москва</p>
             </div>
 
-            <a href="#details" class="mt-16 inline-block text-white animate-bounce">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <a href="#details" class="mt-20 inline-block text-white animate-bounce">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
                 </svg>
             </a>
@@ -224,7 +236,8 @@
             <h2 class="text-5xl md:text-6xl text-accent-red mb-16" data-aos="fade-up">Сохраните дату</h2>
             
             <div class="calendar-container" data-aos="flip-left" data-aos-duration="1200">
-                <div class="serif text-xl mb-6 text-accent-green font-bold">Сентябрь 2024</div>
+                <!-- Обновленный заголовок календаря: Сентябрь 2026 -->
+                <div class="serif text-xl mb-6 text-accent-green font-bold">Сентябрь 2026</div>
                 <div class="calendar-grid">
                     <div class="calendar-day-name">Пн</div>
                     <div class="calendar-day-name">Вт</div>
@@ -234,21 +247,35 @@
                     <div class="calendar-day-name">Сб</div>
                     <div class="calendar-day-name">Вс</div>
                     
-                    <div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day"></div>
-                    <div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day"></div>
+                    <!-- Сетка для Сентября 2026 (начинается с вторника) -->
+                    <div class="calendar-day"></div>
                     <div class="calendar-day text-gray-300">1</div>
-                    <div class="calendar-day text-gray-300">2</div><div class="calendar-day text-gray-300">3</div><div class="calendar-day text-gray-300">4</div>
-                    <div class="calendar-day text-gray-300">5</div><div class="calendar-day text-gray-300">6</div><div class="calendar-day text-gray-300">7</div>
-                    <div class="calendar-day text-gray-300">8</div><div class="calendar-day text-gray-300">9</div><div class="calendar-day text-gray-300">10</div>
-                    <div class="calendar-day text-gray-300">11</div><div class="calendar-day text-gray-300">12</div><div class="calendar-day text-gray-300">13</div>
+                    <div class="calendar-day text-gray-300">2</div>
+                    <div class="calendar-day text-gray-300">3</div>
+                    <div class="calendar-day text-gray-300">4</div>
+                    <div class="calendar-day text-gray-300">5</div>
+                    <div class="calendar-day text-gray-300">6</div>
                     
+                    <div class="calendar-day text-gray-300">7</div>
+                    <div class="calendar-day text-gray-300">8</div>
+                    <div class="calendar-day text-gray-300">9</div>
+                    <div class="calendar-day text-gray-300">10</div>
+                    <div class="calendar-day text-gray-300">11</div>
+                    <div class="calendar-day text-gray-300">12</div>
+                    <div class="calendar-day text-gray-300">13</div>
+                    
+                    <div class="calendar-day text-gray-300">14</div>
+                    <div class="calendar-day text-gray-300">15</div>
+                    <div class="calendar-day text-gray-300">16</div>
+                    <!-- Обновленная дата свадьбы -->
                     <div class="calendar-day wedding-day font-bold">
-                        14
+                        17
                         <span class="heart-marker">❤</span>
                     </div>
+                    <div class="calendar-day text-gray-300">18</div>
+                    <div class="calendar-day text-gray-300">19</div>
+                    <div class="calendar-day text-gray-300">20</div>
                     
-                    <div class="calendar-day text-gray-300">15</div><div class="calendar-day text-gray-300">16</div><div class="calendar-day text-gray-300">17</div>
-                    <div class="calendar-day text-gray-300">18</div><div class="calendar-day text-gray-300">19</div><div class="calendar-day text-gray-300">20</div>
                     <div class="calendar-day text-gray-300">21</div><div class="calendar-day text-gray-300">22</div><div class="calendar-day text-gray-300">23</div>
                     <div class="calendar-day text-gray-300">24</div><div class="calendar-day text-gray-300">25</div><div class="calendar-day text-gray-300">26</div>
                     <div class="calendar-day text-gray-300">27</div><div class="calendar-day text-gray-300">28</div><div class="calendar-day text-gray-300">29</div>
@@ -336,7 +363,7 @@
     <!-- Footer -->
     <footer class="py-16 bg-white text-center border-t border-gray-100 mx-8 mb-8 rounded-2xl shadow-sm">
         <p class="cursive text-4xl text-accent-red mb-4">С любовью, К & А</p>
-        <p class="text-gray-500 text-xs tracking-widest uppercase">2024 • Кирилл & Анна • Wedding Day</p>
+        <p class="text-gray-500 text-xs tracking-widest uppercase">2026 • Кирилл & Анна • Wedding Day</p>
     </footer>
 
     <script>
