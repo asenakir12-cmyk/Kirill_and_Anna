@@ -10,7 +10,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Подключены шрифты, включая Playfair Display для инициалов -->
+    <!-- Подключены шрифты -->
     <link href="https://fonts.googleapis.com/css2?family=Belleza&family=Great+Vibes&family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -71,7 +71,6 @@
             text-transform: uppercase;
         }
 
-        /* Убраны рамки, отступы и тени у секций для создания сплошного фона */
         section:not(.hero-section) {
             background-color: #ffffff;
             margin: 0;
@@ -92,14 +91,14 @@
         .text-accent-green { color: var(--cool-emerald-green); }
         .bg-accent-green { background-color: var(--cool-emerald-green); }
 
-        /* КАЛЕНДАРЬ: Острые углы (border-radius: 0), квадратная форма, стекло и тень */
+        /* КАЛЕНДАРЬ */
         .calendar-container {
             max-width: 480px; 
             width: 100%;
             aspect-ratio: 1 / 1; 
             margin: 0 auto;
             padding: 40px 30px;
-            border-radius: 0; /* Сделал углы острыми */
+            border-radius: 0; 
             background: rgba(255, 255, 255, 0.7); 
             backdrop-filter: blur(10px); 
             -webkit-backdrop-filter: blur(10px);
@@ -139,7 +138,6 @@
             color: #666;
         }
 
-        /* Мультяшная выделенная дата */
         .wedding-day { 
             color: white !important; 
             z-index: 1;
@@ -176,7 +174,7 @@
             letter-spacing: 0.02em;
         }
 
-        /* PHOTO 2: Прямоугольное и большего размера */
+        /* PHOTO 2 */
         .secondary-photo-container {
             max-width: 800px; 
             margin: 3rem auto 0;
@@ -190,6 +188,85 @@
             border-radius: 0; 
             display: block;
             image-rendering: -webkit-optimize-contrast;
+        }
+
+        /* СЕКЦИЯ ЛОКАЦИИ (Карточка над Картой) */
+        .modern-location-vertical {
+            width: 100%;
+            max-width: 1000px;
+            margin: 4rem auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .location-info-panel-full {
+            position: relative;
+            /* Прямая ссылка на изображение из Вашего запроса */
+            background: var(--cool-emerald-green) url('https://avatars.mds.yandex.net/get-images-cbir/3226257/5hQh2mconQQbl9-e_izgPg390/orig') no-repeat center center;
+            background-size: cover;
+            padding: 5rem 2rem;
+            border-left: 4px solid var(--cool-berry-red);
+            text-align: center;
+            box-shadow: 15px 15px 40px rgba(0,0,0,0.1);
+            z-index: 5;
+            color: white;
+            overflow: hidden;
+        }
+
+        /* Наложение для читаемости текста на фоне фото */
+        .location-info-panel-full::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7));
+            z-index: 1;
+        }
+
+        /* Все элементы внутри карточки должны быть поверх overlay */
+        .location-info-panel-full > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .map-container-vertical {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+            border: 1px solid #f9f9f9;
+        }
+
+        .location-tag {
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .map-btn-link {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 2rem;
+            padding: 12px 32px;
+            border: 1px solid white;
+            color: white;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .map-btn-link:hover {
+            background: white;
+            color: var(--cool-emerald-green);
+            transform: translateY(-2px);
         }
 
         .divider {
@@ -235,6 +312,8 @@
             .calendar-container { max-width: 90%; padding: 20px; }
             .calendar-day { padding: 8px 0; font-size: 0.95rem; }
             .heart-marker-svg { width: 44px; height: 44px; }
+            .map-container-vertical { height: 320px; }
+            .location-info-panel-full { padding: 4rem 1.5rem; }
         }
     </style>
 </head>
@@ -261,12 +340,10 @@
 
     <section id="details" class="py-24 overflow-hidden">
         <div class="container mx-auto px-4 text-center">
-            <!-- Заголовок с переносом строки на мобильных устройствах -->
             <h2 class="text-5xl md:text-6xl text-accent-red mb-16 leading-tight" data-aos="fade-up">
                 Дорогие<span class="block md:inline"><br class="md:hidden"></span> родные и близкие!
             </h2>
             
-            <!-- Календарь с острыми углами -->
             <div class="calendar-container" data-aos="zoom-in" data-aos-duration="1200">
                 <div class="serif text-xl md:text-2xl mb-6 text-accent-green font-black tracking-widest uppercase">Сентябрь 2026</div>
                 <div class="calendar-grid">
@@ -323,9 +400,39 @@
                     день нашей свадьбы!
                 </p>
                 
-                <!-- Второе фото (Прямоугольное и более крупное) -->
                 <div class="secondary-photo-container" data-aos="fade-up" data-aos-delay="200">
                     <img src="photo2.jpg" alt="[Наше фото]" class="secondary-photo" onerror="this.style.display='none';">
+                </div>
+
+                <!-- БЛОК ЛОКАЦИИ С НОВЫМ ФОНОВЫМ ИЗОБРАЖЕНИЕМ -->
+                <div class="modern-location-vertical" data-aos="fade-up">
+                    <div class="location-info-panel-full">
+                        <span class="location-tag">Место встречи</span>
+                        <h3 class="serif text-4xl text-white mb-4">Голицын Клуб</h3>
+                        <p class="text-white font-bold text-xl mb-6 tracking-widest uppercase opacity-95">
+                            Шатер Еловый
+                        </p>
+                        <div class="max-w-md mx-auto text-white opacity-90">
+                            <p class="flex items-center justify-center font-medium">
+                                <svg class="w-5 h-5 mr-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+                                47 км, Минское ш., д. 45, Голицыно
+                            </p>
+                        </div>
+                        <a href="https://maps.app.goo.gl/g533tmErbQ3zAUQb8" target="_blank" class="map-btn-link">
+                            Открыть навигатор
+                        </a>
+                    </div>
+                    
+                    <div class="map-container-vertical">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2254.664402636733!2d36.98399537684879!3d55.5904259729868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46ca075055555555%3A0x633d248b111a43a1!2z0JPQvtC70LjRhtGL0L0g0JrQu9GD0LE!5e0!3m2!1sru!2sru!4v1714545000000!5m2!1sru!2sru" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
                 </div>
             </div>
         </div>
