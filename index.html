@@ -92,17 +92,25 @@
         .text-accent-green { color: var(--cool-emerald-green); }
         .bg-accent-green { background-color: var(--cool-emerald-green); }
 
-        /* КАЛЕНДАРЬ: Рамка убрана (border: none), тень оставлена */
+        /* КАЛЕНДАРЬ: Острые углы (border-radius: 0), квадратная форма, стекло и тень */
         .calendar-container {
             max-width: 480px; 
+            width: 100%;
+            aspect-ratio: 1 / 1; 
             margin: 0 auto;
-            padding: 30px;
-            border-radius: 0; 
-            background: #fff;
+            padding: 40px 30px;
+            border-radius: 0; /* Сделал углы острыми */
+            background: rgba(255, 255, 255, 0.7); 
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px);
             box-shadow: 
+                0 8px 32px 0 rgba(31, 38, 135, 0.15),
                 20px 20px 60px #d9d9d9,
                 -20px -20px 60px #ffffff;
-            border: none; /* Серая рамка удалена */
+            border: 1px solid rgba(255, 255, 255, 0.18); 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .calendar-grid {
@@ -121,7 +129,7 @@
         }
 
         .calendar-day {
-            padding: 15px 0; 
+            padding: 12px 0; 
             font-size: 1.1rem; 
             position: relative;
             display: flex;
@@ -140,8 +148,8 @@
 
         .heart-marker-svg {
             position: absolute;
-            width: 60px; 
-            height: 60px;
+            width: 55px; 
+            height: 55px;
             fill: var(--cool-berry-red);
             z-index: -1;
             filter: drop-shadow(2px 4px 6px rgba(114, 47, 55, 0.2));
@@ -224,8 +232,8 @@
             .hero-section h1 { font-size: 5rem; }
             .quote-text { font-size: 1.1rem; }
             section:not(.hero-section) { padding-top: 3rem; padding-bottom: 3rem; }
-            .calendar-container { max-width: 90%; padding: 15px; }
-            .calendar-day { padding: 8px 0; font-size: 0.9rem; }
+            .calendar-container { max-width: 90%; padding: 20px; }
+            .calendar-day { padding: 8px 0; font-size: 0.95rem; }
             .heart-marker-svg { width: 44px; height: 44px; }
         }
     </style>
@@ -255,9 +263,9 @@
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-5xl md:text-6xl text-accent-red mb-16" data-aos="fade-up">Дорогие родные и близкие!</h2>
             
-            <!-- Увеличенный прямоугольный календарь без рамки -->
+            <!-- Календарь с острыми углами -->
             <div class="calendar-container" data-aos="zoom-in" data-aos-duration="1200">
-                <div class="serif text-2xl mb-8 text-accent-green font-black tracking-widest uppercase">Сентябрь 2026</div>
+                <div class="serif text-xl md:text-2xl mb-6 text-accent-green font-black tracking-widest uppercase">Сентябрь 2026</div>
                 <div class="calendar-grid">
                     <div class="calendar-day-name">Пн</div>
                     <div class="calendar-day-name">Вт</div>
