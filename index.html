@@ -180,7 +180,7 @@
         .map-btn-link {
             display: inline-flex;
             align-items: center;
-            margin-top: 2rem;
+            margin-top: 1rem;
             padding: 12px 32px;
             border: 1px solid white;
             color: white;
@@ -317,16 +317,24 @@
                 <div class="location-card" data-aos="fade-up">
                     <span class="text-xs tracking-[0.3em] uppercase opacity-80 mb-4 block">Место встречи</span>
                     <h3 class="serif text-4xl mb-2">Голицын Клуб</h3>
-                    <p class="font-bold text-xl mb-6 tracking-widest opacity-90 uppercase">Шатер Еловый</p>
+                    <p class="font-bold text-xl mb-3 tracking-widest opacity-90 uppercase">Шатер Еловый</p>
                     <div class="mb-8 opacity-90">
                         <p class="flex items-center justify-center">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
                             47 км, Минское ш., д. 45, Голицыно
                         </p>
                     </div>
-                    <a href="https://maps.app.goo.gl/g533tmErbQ3zAUQb8" target="_blank" class="map-btn-link">
-                        Открыть навигатор
-                    </a>
+                    
+                    <!-- Обновленная подпись: ниже и нежирная -->
+                    <div class="inline-block mb-2 bg-black/40 border border-white/20 backdrop-blur-sm py-2 px-6 rounded-lg">
+                        <p class="text-sm font-normal text-white uppercase tracking-wider">Внимание! Нет съезда с платной дороги!</p>
+                    </div>
+                    
+                    <div>
+                        <a href="https://maps.app.goo.gl/g533tmErbQ3zAUQb8" target="_blank" class="map-btn-link">
+                            Открыть навигатор
+                        </a>
+                    </div>
 
                     <!-- Интерактивная карта, привязанная к адресу -->
                     <div class="map-iframe-wrapper">
@@ -352,18 +360,23 @@
             <div class="max-w-xl mx-auto space-y-12">
                 <div class="timeline-item" data-aos="fade-right">
                     <div class="text-accent-green font-bold text-lg">15:00</div>
-                    <h3 class="serif text-2xl mb-1">Welcome-зона</h3>
-                    <p class="text-gray-600">Сбор гостей и легкий фуршет.</p>
+                    <h3 class="serif text-2xl mb-1">Сбор гостей, фуршет</h3>
+                    <p class="text-gray-600">Начало нашего праздничного вечера.</p>
                 </div>
                 <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
                     <div class="text-accent-green font-bold text-lg">16:00</div>
                     <h3 class="serif text-2xl mb-1">Церемония</h3>
-                    <p class="text-gray-600">Торжественная регистрация брака.</p>
+                    <p class="text-gray-600">Торжественная регистрация нашего союза.</p>
                 </div>
                 <div class="timeline-item" data-aos="fade-right" data-aos-delay="400">
-                    <div class="text-accent-green font-bold text-lg">18:00</div>
-                    <h3 class="serif text-2xl mb-1">Банкет</h3>
-                    <p class="text-gray-600">Праздничный ужин и танцы.</p>
+                    <div class="text-accent-green font-bold text-lg">17:00</div>
+                    <h3 class="serif text-2xl mb-1">Праздничный ужин</h3>
+                    <p class="text-gray-600">Вечер в кругу самых близких людей.</p>
+                </div>
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="600">
+                    <div class="text-accent-green font-bold text-lg">23:00</div>
+                    <h3 class="serif text-2xl mb-1">Завершение программы</h3>
+                    <p class="text-gray-600">Красивый финал свадебного торжества.</p>
                 </div>
             </div>
         </div>
