@@ -13,33 +13,66 @@
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-red-brown: #8B4513;
-            --accent-terracotta: #A0522D;
-            --deep-maroon: #800000;
+            /* Холодные оттенки */
+            --cool-berry-red: #722F37; /* Глубокий винный */
+            --cool-taupe-brown: #5D4A44; /* Холодный серо-коричневый */
+            --cool-emerald-green: #1A472A; /* Холодный изумрудный */
+            --cool-pine-green: #2B3D2E; /* Хвойный */
+            --cool-silver-accent: #A5A5A5; /* Серебристый для акцентов */
         }
 
         body {
             font-family: 'Montserrat', sans-serif;
-            /* Установка фонового изображения для всего сайта */
-            background-image: url('photo.jpg');
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
+            background-color: #f4f4f4;
             color: #333;
             overflow-x: hidden;
         }
 
-        /* Полупрозрачные подложки для блоков, чтобы текст читался на фоне фото */
-        section {
-            background-color: rgba(255, 255, 255, 0.92);
-            margin: 2rem;
-            border-radius: 20px;
+        /* Общий фон сайта за пределами первого блока */
+        .site-background {
+            background-image: url('photo.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
         }
 
-        /* Главный экран может быть более прозрачным или без фона для акцента на фото */
+        /* Обновленный главный экран: фото на весь экран без рамок */
         .hero-section {
-            background-color: rgba(255, 255, 255, 0.7);
-            min-height: calc(100vh - 4rem);
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-image: url('photo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Затемнение поверх фото для читаемости текста */
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.3); /* Легкое затемнение */
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            padding: 0 20px;
+        }
+
+        /* Полупрозрачные подложки для остальных блоков */
+        section:not(.hero-section) {
+            background-color: rgba(255, 255, 255, 0.95);
+            margin: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(26, 71, 42, 0.1);
         }
 
         h1, h2, .cursive {
@@ -50,43 +83,27 @@
             font-family: 'Playfair Display', serif;
         }
 
-        .text-accent {
-            color: var(--primary-red-brown);
+        .text-accent-red {
+            color: var(--cool-berry-red);
         }
 
-        .bg-accent {
-            background-color: var(--primary-red-brown);
+        .text-accent-green {
+            color: var(--cool-emerald-green);
         }
 
-        /* Hero Image styling */
-        .hero-image-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            height: 400px;
-            margin: 2rem auto;
-            overflow: hidden;
-            border-radius: 200px 200px 0 0;
-            box-shadow: 0 20px 40px rgba(139, 69, 19, 0.15);
-            background: white;
-        }
-
-        .hero-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+        .bg-accent-green {
+            background-color: var(--cool-emerald-green);
         }
 
         /* Calendar styles */
         .calendar-container {
             max-width: 320px;
             margin: 0 auto;
-            border: 1px solid #f3f3f3;
+            border: 1px solid rgba(26, 71, 42, 0.15);
             padding: 25px;
             border-radius: 15px;
             background: white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(26, 71, 42, 0.08);
         }
 
         .calendar-grid {
@@ -99,8 +116,9 @@
         .calendar-day-name {
             font-weight: bold;
             font-size: 0.75rem;
-            color: var(--accent-terracotta);
+            color: var(--cool-taupe-brown);
             margin-bottom: 10px;
+            text-transform: uppercase;
         }
 
         .calendar-day {
@@ -119,7 +137,7 @@
 
         .heart-marker {
             position: absolute;
-            color: var(--deep-maroon);
+            color: var(--cool-berry-red);
             font-size: 2.4rem;
             z-index: -1;
             animation: heartBeat 2s infinite;
@@ -136,25 +154,25 @@
         .divider {
             height: 1px;
             width: 120px;
-            background: linear-gradient(90deg, transparent, var(--primary-red-brown), transparent);
+            background: linear-gradient(90deg, transparent, white, transparent);
             margin: 20px auto;
         }
 
         .btn-submit {
-            background-color: var(--primary-red-brown);
+            background-color: var(--cool-emerald-green);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .btn-submit:hover {
-            background-color: var(--deep-maroon);
+            background-color: var(--cool-berry-red);
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(128, 0, 0, 0.2);
+            box-shadow: 0 10px 20px rgba(26, 71, 42, 0.2);
         }
 
         .timeline-item {
             position: relative;
             padding-left: 2rem;
-            border-left: 2px solid #eee;
+            border-left: 2px solid rgba(26, 71, 42, 0.1);
         }
         
         .timeline-item::before {
@@ -164,52 +182,52 @@
             top: 8px;
             width: 12px;
             height: 12px;
-            background: var(--primary-red-brown);
+            background: var(--cool-emerald-green);
             border-radius: 50%;
         }
 
-        /* Стили для мобильных устройств, чтобы отступы секций были меньше */
         @media (max-width: 640px) {
-            section {
+            section:not(.hero-section) {
                 margin: 1rem;
+            }
+            .hero-section h1 {
+                font-size: 4rem;
             }
         }
     </style>
 </head>
-<body>
+<body class="site-background">
 
-    <!-- Hero Section -->
-    <section class="hero-section flex flex-col items-center justify-center text-center px-4 pt-10" data-aos="fade-in">
-        <div data-aos="fade-down" data-aos-duration="1500">
-            <span class="text-accent text-lg md:text-xl uppercase tracking-[0.3em] mb-4 block font-light">Приглашаем вас на свадьбу</span>
-            <h1 class="text-6xl md:text-8xl text-accent my-4">Александр & Мария</h1>
+    <!-- Hero Section: Фото на весь экран -->
+    <header class="hero-section" data-aos="fade-in">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div data-aos="fade-down" data-aos-duration="1500">
+                <span class="text-white text-lg md:text-xl uppercase tracking-[0.3em] mb-4 block font-light">Приглашаем вас на свадьбу</span>
+                <h1 class="text-6xl md:text-8xl text-white my-4">Александр & Мария</h1>
+            </div>
+
+            <div data-aos="fade-up" data-aos-delay="500" data-aos-duration="1200">
+                <div class="divider"></div>
+                <p class="serif italic text-2xl md:text-3xl text-white">14 Сентября 2024</p>
+                <p class="mt-4 text-white uppercase tracking-widest text-sm font-bold">г. Москва</p>
+            </div>
+
+            <a href="#details" class="mt-16 inline-block text-white animate-bounce">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </a>
         </div>
-
-        <!-- Main Photo (в центре экрана) -->
-        <div class="hero-image-container" data-aos="zoom-in" data-aos-duration="1800">
-            <img src="photo.jpg" alt="Фото молодоженов" class="hero-image">
-        </div>
-
-        <div data-aos="fade-up" data-aos-delay="500" data-aos-duration="1200">
-            <div class="divider"></div>
-            <p class="serif italic text-2xl md:text-3xl text-gray-700">14 Сентября 2024</p>
-            <p class="mt-4 text-accent uppercase tracking-widest text-sm font-bold">г. Москва</p>
-        </div>
-
-        <a href="#details" class="mt-10 text-accent animate-bounce">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
-        </a>
-    </section>
+    </header>
 
     <!-- Calendar Section -->
     <section id="details" class="py-24 overflow-hidden">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-5xl md:text-6xl text-accent mb-16" data-aos="fade-up">Сохраните дату</h2>
+            <h2 class="text-5xl md:text-6xl text-accent-red mb-16" data-aos="fade-up">Сохраните дату</h2>
             
             <div class="calendar-container" data-aos="flip-left" data-aos-duration="1200">
-                <div class="serif text-xl mb-6 text-accent font-bold">Сентябрь 2024</div>
+                <div class="serif text-xl mb-6 text-accent-green font-bold">Сентябрь 2024</div>
                 <div class="calendar-grid">
                     <div class="calendar-day-name">Пн</div>
                     <div class="calendar-day-name">Вт</div>
@@ -250,27 +268,27 @@
     <!-- Schedule Section -->
     <section class="py-24">
         <div class="container mx-auto px-4">
-            <h2 class="text-center text-5xl md:text-6xl text-accent mb-20" data-aos="fade-down">Программа дня</h2>
+            <h2 class="text-center text-5xl md:text-6xl text-accent-red mb-20" data-aos="fade-down">Программа дня</h2>
             <div class="max-w-xl mx-auto space-y-12">
                 <div class="timeline-item" data-aos="fade-right">
-                    <div class="text-accent font-bold text-xl mb-1">15:00</div>
+                    <div class="text-accent-green font-bold text-xl mb-1">15:00</div>
                     <div>
                         <h3 class="serif text-2xl mb-2 text-gray-800">Welcome-зона</h3>
-                        <p class="text-gray-600 font-medium">Легкая музыка, фуршет и встреча гостей в саду.</p>
+                        <p class="text-gray-600 font-medium">Стильный фуршет и встреча гостей под звуки джаза.</p>
                     </div>
                 </div>
                 <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
-                    <div class="text-accent font-bold text-xl mb-1">16:00</div>
+                    <div class="text-accent-green font-bold text-xl mb-1">16:00</div>
                     <div>
                         <h3 class="serif text-2xl mb-2 text-gray-800">Церемония</h3>
-                        <p class="text-gray-600 font-medium">Самый трогательный момент нашего праздника.</p>
+                        <p class="text-gray-600 font-medium">Главное событие вечера в кругу самых близких.</p>
                     </div>
                 </div>
                 <div class="timeline-item" data-aos="fade-right" data-aos-delay="400">
-                    <div class="text-accent font-bold text-xl mb-1">18:00</div>
+                    <div class="text-accent-green font-bold text-xl mb-1">18:00</div>
                     <div>
                         <h3 class="serif text-2xl mb-2 text-gray-800">Банкет</h3>
-                        <p class="text-gray-600 font-medium">Торжественный ужин, поздравления и зажигательные танцы.</p>
+                        <p class="text-gray-600 font-medium">Ужин, танцы и праздничная атмосфера.</p>
                     </div>
                 </div>
             </div>
@@ -281,26 +299,26 @@
     <section class="py-24">
         <div class="container mx-auto px-4 max-w-lg">
             <div class="text-center mb-16" data-aos="zoom-in">
-                <h2 class="text-5xl md:text-6xl text-accent mb-6">Ждем вас!</h2>
+                <h2 class="text-5xl md:text-6xl text-accent-red mb-6">Ждем вас!</h2>
                 <p class="text-gray-600 italic font-medium">Пожалуйста, подтвердите присутствие до 1 августа</p>
             </div>
             
             <form id="rsvpForm" class="space-y-8" data-aos="fade-up">
                 <div class="relative">
-                    <input type="text" id="name" required placeholder=" " class="peer w-full border-b-2 border-accent p-4 focus:outline-none focus:border-deep-maroon transition-colors bg-transparent">
-                    <label for="name" class="absolute left-4 top-4 text-gray-500 pointer-events-none transition-all peer-focus:-top-2 peer-focus:text-xs peer-focus:text-accent peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:text-xs">Ваше Имя и Фамилия</label>
+                    <input type="text" id="name" required placeholder=" " class="peer w-full border-b-2 border-accent-green p-4 focus:outline-none focus:border-accent-red transition-colors bg-transparent">
+                    <label for="name" class="absolute left-4 top-4 text-gray-500 pointer-events-none transition-all peer-focus:-top-2 peer-focus:text-xs peer-focus:text-accent-green peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:text-xs">Ваше Имя и Фамилия</label>
                 </div>
                 
                 <div class="space-y-4">
                     <span class="block text-xs font-bold text-gray-500 uppercase tracking-widest">Вы придете?</span>
                     <div class="flex flex-col gap-4">
                         <label class="flex items-center space-x-3 cursor-pointer group">
-                            <input type="radio" name="attendance" value="yes" class="w-5 h-5 accent-red-900">
-                            <span class="group-hover:text-accent transition-colors font-medium">Я приду с удовольствием!</span>
+                            <input type="radio" name="attendance" value="yes" class="w-5 h-5 accent-emerald-900">
+                            <span class="group-hover:text-accent-green transition-colors font-medium">Я приду с удовольствием!</span>
                         </label>
                         <label class="flex items-center space-x-3 cursor-pointer group">
-                            <input type="radio" name="attendance" value="no" class="w-5 h-5 accent-red-900">
-                            <span class="group-hover:text-accent transition-colors font-medium">К сожалению, не смогу</span>
+                            <input type="radio" name="attendance" value="no" class="w-5 h-5 accent-emerald-900">
+                            <span class="group-hover:text-accent-red transition-colors font-medium">К сожалению, не смогу</span>
                         </label>
                     </div>
                 </div>
@@ -310,17 +328,17 @@
                 </button>
             </form>
             
-            <div id="thankYouMessage" class="hidden text-center p-12 bg-white/90 rounded-3xl border border-accent/20" data-aos="zoom-in">
-                <div class="text-4xl mb-4">✨</div>
-                <h3 class="serif text-3xl text-accent mb-4">Мы получили ваш ответ!</h3>
-                <p class="text-gray-600">Спасибо, что помогаете нам сделать этот день идеальным.</p>
+            <div id="thankYouMessage" class="hidden text-center p-12 bg-white/90 rounded-3xl border border-accent-green/20" data-aos="zoom-in">
+                <div class="text-4xl mb-4">❄️</div>
+                <h3 class="serif text-3xl text-accent-green mb-4">Мы получили ваш ответ!</h3>
+                <p class="text-gray-600">Благодарим за внимание к нашему торжеству.</p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="py-16 bg-white/95 text-center border-t border-gray-100 mx-8 mb-8 rounded-2xl shadow-xl">
-        <p class="cursive text-4xl text-accent mb-6">С любовью, А & М</p>
+        <p class="cursive text-4xl text-accent-red mb-6">С любовью, А & М</p>
         <p class="text-gray-500 text-xs tracking-widest uppercase">2024 • Wedding Day</p>
     </footer>
 
