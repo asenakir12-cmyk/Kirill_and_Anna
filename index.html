@@ -502,10 +502,10 @@
         </div>
     </section>
 
-    <!-- БЛОК С ФОТО 4 -->
-    <section class="w-full">
-        <div class="w-full">
-            <img src="photo4.jpg" alt="[Фото 4]" class="w-full h-auto block" style="max-width: 100%;" onerror="this.style.display='none';">
+    <!-- Блок с Фото 4 (Между программой и дресс-кодом) -->
+    <section class="py-12 bg-white" data-aos="fade-up">
+        <div class="max-w-xl mx-auto px-4">
+            <img src="photo4.jpg" alt="[Фото 4]" class="w-full h-auto rounded-xl shadow-md block" onerror="this.style.display='none';">
         </div>
     </section>
 
@@ -603,7 +603,7 @@
 
         // Закрываем ромбы при клике в любом другом месте экрана
         document.addEventListener('click', function() {
-            if (colorFlower.classList.contains('active')) {
+            if (colorFlower && colorFlower.classList.contains('active')) {
                 colorFlower.classList.remove('active');
             }
         });
