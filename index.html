@@ -240,11 +240,12 @@
             position: relative;
             max-width: 600px; 
             margin: 0 auto;
-            aspect-ratio: 3/4;
+            aspect-ratio: 768/1365; /* Точное соответствие пропорциям вашего фото */
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 16px;
+            background: #f9f9f9; /* Светлый фон для пустых областей, если возникнут */
         }
 
         .background-photo-wrapper {
@@ -256,7 +257,7 @@
         .background-photo-wrapper img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain; /* Теперь фото отображается полностью без обрезки */
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
