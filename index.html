@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Шрифты -->
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;500&family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <style>
         :root {
             --cool-berry-red: #722F37;
@@ -208,24 +208,6 @@
             transform: translateY(-2px);
         }
 
-        /* Контейнер карты */
-        .map-iframe-wrapper {
-            margin: 2.5rem auto 0;
-            width: 260px; 
-            max-width: 90%;
-            height: 180px; 
-            border-radius: 0; 
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.2);
-            filter: sepia(30%) hue-rotate(80deg) saturate(60%) brightness(80%); 
-            transition: filter 0.3s ease;
-        }
-
-        .map-iframe-wrapper:hover {
-            filter: sepia(10%) hue-rotate(80deg) saturate(80%) brightness(90%);
-        }
-
         .timeline-item {
             position: relative;
             padding-left: 2rem;
@@ -253,110 +235,130 @@
             transform: translateY(-2px);
         }
 
-        /* --- СТИЛИ ДРЕСС-КОДА (ВЕРСИЯ С ФОТО СПРАВА) --- */
-        .dresscode-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            align-items: center;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .flower-container {
+        /* --- ДРЕСС-КОД С НАЛОЖЕНИЕМ НА PHOTO3 --- */
+        .dresscode-stack {
             position: relative;
-            height: 400px;
+            max-width: 600px; 
+            margin: 0 auto;
+            aspect-ratio: 3/4;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            perspective: 1200px;
+            border-radius: 16px;
         }
 
-        .diamond-rhombus {
-            width: 90px;
-            height: 145px;
-            position: absolute;
-            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-            transform-origin: 50% 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1));
-        }
-
-        .diamond-rhombus::after {
-            content: '';
+        .background-photo-wrapper {
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.1) 100%);
-            pointer-events: none;
+            z-index: 1;
         }
 
-        .color-label {
-            color: white;
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 600;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            text-align: center;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-            z-index: 10;
-        }
-
-        .rhombus-1 { background: var(--color-espresso); transform: rotate(-24deg); z-index: 1; }
-        .rhombus-2 { background: var(--color-burgundy); transform: rotate(-12deg); z-index: 2; }
-        .rhombus-3 { background: var(--color-ruby);     transform: rotate(0deg);   z-index: 5; } 
-        .rhombus-4 { background: var(--color-olive);    transform: rotate(12deg);  z-index: 3; }
-        .rhombus-5 { background: var(--color-sage);     transform: rotate(24deg);  z-index: 4; }
-
-        .flower-container:hover .diamond-rhombus {
-            transform: rotate(0deg); 
-        }
-        
-        .flower-container:hover .rhombus-1 { transform: translate(-140px, -10px); }
-        .flower-container:hover .rhombus-2 { transform: translate(-70px, -10px); }
-        .flower-container:hover .rhombus-3 { transform: translate(0px, -20px); }
-        .flower-container:hover .rhombus-4 { transform: translate(70px, -10px); }
-        .flower-container:hover .rhombus-5 { transform: translate(140px, -10px); }
-
-        .flower-container:hover .color-label { opacity: 1; }
-
-        .photo-sidebar {
+        .background-photo-wrapper img {
             width: 100%;
-            height: 500px;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .flower-overlay {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center; 
+            justify-content: center;
+            cursor: pointer;
+            perspective: 1000px;
+        }
+
+        /* Ромбы */
+        .diamond-rhombus {
+            width: 100px; 
+            height: 170px; 
+            position: absolute;
+            transition: all 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+            transform-origin: 50% 100%; 
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
         }
 
-        .photo-sidebar img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            mix-blend-mode: multiply; 
+        .diamond-inner {
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        @media (max-width: 768px) {
-            .dresscode-layout {
-                grid-template-columns: 1fr;
-            }
-            .photo-sidebar {
-                height: 400px;
-                order: 2;
-            }
-            .flower-container {
-                height: 300px;
-                order: 1;
-            }
-            .flower-container:hover .rhombus-1 { transform: translate(-110px, -5px); }
-            .flower-container:hover .rhombus-2 { transform: translate(-55px, -5px); }
-            .flower-container:hover .rhombus-4 { transform: translate(55px, -5px); }
-            .flower-container:hover .rhombus-5 { transform: translate(110px, -5px); }
+        .diamond-inner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.2) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Обновленный шрифт для названий */
+        .color-label {
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            opacity: 0;
+            transition: all 0.5s ease;
+            text-align: center;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+            pointer-events: none;
+            white-space: nowrap;
+            z-index: 2;
+        }
+
+        /* Начальное веерное состояние */
+        .rhombus-1 { transform: rotate(-12deg); z-index: 11; }
+        .rhombus-2 { transform: rotate(-6deg); z-index: 12; }
+        .rhombus-3 { transform: rotate(0deg);  z-index: 15; } 
+        .rhombus-4 { transform: rotate(6deg);  z-index: 13; }
+        .rhombus-5 { transform: rotate(12deg); z-index: 14; }
+
+        .rhombus-1 .diamond-inner { background-color: var(--color-espresso); }
+        .rhombus-2 .diamond-inner { background-color: var(--color-burgundy); }
+        .rhombus-3 .diamond-inner { background-color: var(--color-ruby); }
+        .rhombus-4 .diamond-inner { background-color: var(--color-olive); }
+        .rhombus-5 .diamond-inner { background-color: var(--color-sage); }
+
+        /* Раскладывание в прямую линию */
+        .flower-overlay:hover .diamond-rhombus,
+        .flower-overlay.active .diamond-rhombus { 
+            transform: rotate(0deg) !important;
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.5));
+        }
+        
+        .flower-overlay:hover .rhombus-1, .flower-overlay.active .rhombus-1 { transform: translateX(-200px) !important; }
+        .flower-overlay:hover .rhombus-2, .flower-overlay.active .rhombus-2 { transform: translateX(-100px) !important; }
+        .flower-overlay:hover .rhombus-3, .flower-overlay.active .rhombus-3 { transform: translateX(0) scale(1.1) !important; z-index: 20; }
+        .flower-overlay:hover .rhombus-4, .flower-overlay.active .rhombus-4 { transform: translateX(100px) !important; }
+        .flower-overlay:hover .rhombus-5, .flower-overlay.active .rhombus-5 { transform: translateX(200px) !important; }
+        
+        .flower-overlay:hover .color-label, .flower-overlay.active .color-label { 
+            opacity: 1; 
+        }
+
+        @media (max-width: 640px) {
+            .dresscode-stack { max-width: 350px; }
+            .diamond-rhombus { width: 70px; height: 120px; }
+            .flower-overlay:hover .rhombus-1, .flower-overlay.active .rhombus-1 { transform: translateX(-120px) !important; }
+            .flower-overlay:hover .rhombus-2, .flower-overlay.active .rhombus-2 { transform: translateX(-60px) !important; }
+            .flower-overlay:hover .rhombus-4, .flower-overlay.active .rhombus-4 { transform: translateX(60px) !important; }
+            .flower-overlay:hover .rhombus-5, .flower-overlay.active .rhombus-5 { transform: translateX(120px) !important; }
+            .color-label { font-size: 0.55rem; letter-spacing: 0.1em; }
         }
     </style>
 </head>
@@ -452,26 +454,46 @@
     </section>
 
     <!-- БЛОК ДРЕСС-КОД -->
-    <section class="py-24 bg-white overflow-hidden">
+    <section class="py-24 bg-white">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-5xl text-accent-red mb-8" data-aos="fade-up">Дресс-код</h2>
             <p class="serif text-lg text-gray-600 mb-16 max-w-3xl mx-auto" data-aos="fade-up">
-                Мы очень стараемся сделать свадьбу красивой и стильной, поэтому просим вас в своих нарядах поддержать цветовую палитру нашей свадьбы.
+                Мы очень стараемся сделать свадьбу красивой и стильной, поэтому просим вас поддержать цветовую палитру нашей свадьбы (нажмите на фото, чтобы увидеть цвета).
             </p>
 
-            <div class="dresscode-layout">
-                <!-- Слева: Палитра (ромбы) -->
-                <div class="flower-container" data-aos="fade-right">
-                    <div class="diamond-rhombus rhombus-1"><span class="color-label">Эспрессо</span></div>
-                    <div class="diamond-rhombus rhombus-2"><span class="color-label">Бургунди</span></div>
-                    <div class="diamond-rhombus rhombus-4"><span class="color-label">Оливковый</span></div>
-                    <div class="diamond-rhombus rhombus-5"><span class="color-label">Шалфей</span></div>
-                    <div class="diamond-rhombus rhombus-3"><span class="color-label">Рубиновый</span></div>
+            <div class="dresscode-stack" data-aos="zoom-in">
+                <!-- Фото на фоне -->
+                <div class="background-photo-wrapper">
+                    <img src="photo3.jpg" alt="Дресс-код">
                 </div>
-
-                <!-- Справа: Ваше фото photo3.jpg -->
-                <div class="photo-sidebar" data-aos="fade-left">
-                    <img src="photo3.jpg" alt="[Образы дресс-кода]" onerror="this.src='https://via.placeholder.com/400x600?text=%D0%9E%D0%B1%D1%80%D0%B0%D0%B7%D1%8B'">
+                
+                <!-- Ромбы наложенные в центре картины -->
+                <div class="flower-overlay" id="colorFlower">
+                    <div class="diamond-rhombus rhombus-1">
+                        <div class="diamond-inner">
+                            <span class="color-label">Espresso</span>
+                        </div>
+                    </div>
+                    <div class="diamond-rhombus rhombus-2">
+                        <div class="diamond-inner">
+                            <span class="color-label">Burgundy</span>
+                        </div>
+                    </div>
+                    <div class="diamond-rhombus rhombus-4">
+                        <div class="diamond-inner">
+                            <span class="color-label">Olive</span>
+                        </div>
+                    </div>
+                    <div class="diamond-rhombus rhombus-5">
+                        <div class="diamond-inner">
+                            <span class="color-label">Sage</span>
+                        </div>
+                    </div>
+                    <div class="diamond-rhombus rhombus-3">
+                        <div class="diamond-inner">
+                            <span class="color-label">Ruby Wine</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -501,9 +523,9 @@
                 </div>
                 <button type="submit" class="w-full text-white py-4 rounded-full shadow-lg btn-submit uppercase tracking-widest font-bold text-sm">Отправить ответ</button>
             </form>
-            <div id="thankYouMessage" class="hidden p-8 border border-accent-green/20 rounded-2xl">
+            <div id="thankYouMessage" class="hidden text-center p-8 border border-accent-green/20 rounded-2xl">
                 <h3 class="serif text-3xl text-accent-green">Спасибо!</h3>
-                <p class="text-gray-600 mt-2">Ваш ответ принят.</p>
+                <p class="text-gray-600 mt-2">Мы получили ваш ответ.</p>
             </div>
         </div>
     </section>
@@ -516,10 +538,17 @@
     <script>
         AOS.init({ duration: 1200, once: true });
 
+        // Обработка формы
         document.getElementById('rsvpForm').addEventListener('submit', function(e) {
             e.preventDefault();
             this.classList.add('hidden');
             document.getElementById('thankYouMessage').classList.remove('hidden');
+        });
+
+        // Анимация ромбов для мобильных устройств по клику
+        const colorFlower = document.getElementById('colorFlower');
+        colorFlower.addEventListener('click', function() {
+            this.classList.toggle('active');
         });
     </script>
 </body>
