@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Шрифты -->
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;500&family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600&family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <style>
         :root {
             --cool-berry-red: #722F37;
@@ -78,6 +78,7 @@
 
         h2, .cursive { font-family: 'Great Vibes', cursive; }
         .serif { font-family: 'Noto Serif', serif; }
+        .playfair { font-family: 'Playfair Display', serif; }
 
         .text-accent-red { color: var(--cool-berry-red); }
         .text-accent-green { color: var(--cool-emerald-green); }
@@ -396,6 +397,101 @@
             .rhombus-5 { z-index: 14; }
             .map-container { width: 260px; height: 180px; }
         }
+
+        /* --- ЭФФЕКТ ЖИДКОГО СТЕКЛА ДЛЯ ПАМЯТКИ --- */
+        .memo-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
+            backdrop-filter: blur(20px) saturate(160%);
+            -webkit-backdrop-filter: blur(20px) saturate(160%);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 30px;
+            box-shadow: 0 4px 24px 0 rgba(31, 38, 135, 0.05);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .memo-card::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, transparent 60%);
+            opacity: 0.4;
+            transition: transform 0.8s ease;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .memo-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(26, 71, 42, 0.08);
+            border-color: rgba(255, 255, 255, 1);
+        }
+
+        .memo-card:hover::before {
+            transform: translate(25%, 25%);
+        }
+
+        .memo-icon-wrapper {
+            background: linear-gradient(135deg, rgba(26, 71, 42, 0.08), rgba(26, 71, 42, 0.03));
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: all 0.5s ease;
+        }
+
+        .memo-card:hover .memo-icon-wrapper {
+            background: var(--cool-emerald-green);
+            color: white;
+            transform: scale(1.15) rotate(8deg);
+            box-shadow: 0 10px 20px rgba(26, 71, 42, 0.15);
+        }
+
+        .memo-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 0.75rem;
+            transition: color 0.3s ease;
+        }
+
+        .memo-title::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--cool-emerald-green);
+            border-radius: 2px;
+            transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .memo-card:hover .memo-title::after {
+            width: 100%;
+            background: var(--cool-berry-red);
+        }
+
+        .memo-card:hover .memo-title {
+            color: var(--cool-berry-red);
+        }
+
+        .memo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+        }
+
+        /* Декоративные жидкие капли на фоне секции */
+        .liquid-blob {
+            position: absolute;
+            background: linear-gradient(135deg, rgba(26, 71, 42, 0.04), rgba(114, 47, 55, 0.04));
+            filter: blur(60px);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
@@ -478,7 +574,7 @@
     </section>
 
     <!-- Программа -->
-    <section class="py-24 bg-gray-50">
+    <section class="py-24 bg-white">
         <div class="container mx-auto px-4">
             <h2 class="text-center text-5xl text-accent-red mb-20" data-aos="fade-down">Программа дня</h2>
             <div class="max-w-xl mx-auto space-y-12">
@@ -502,7 +598,7 @@
         </div>
     </section>
 
-    <!-- Блок с Фото 4 (Между программой и дресс-кодом) -->
+    <!-- Блок с Фото 4 -->
     <section class="py-12 bg-white" data-aos="fade-up">
         <div class="max-w-xl mx-auto px-4">
             <img src="photo4.jpg" alt="[Фото 4]" class="w-full h-auto rounded-xl shadow-md block" onerror="this.style.display='none';">
@@ -537,6 +633,87 @@
                     </div>
                     <div class="diamond-rhombus rhombus-3">
                         <div class="diamond-inner"><span class="color-label">Ruby Wine</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПАМЯТКА ДЛЯ ГОСТЕЙ -->
+    <section class="py-32 bg-white relative overflow-hidden">
+        <!-- Декоративные пятна на фоне (едва заметные) -->
+        <div class="liquid-blob w-96 h-96 top-0 -left-20" style="opacity: 0.5;"></div>
+        <div class="liquid-blob w-80 h-80 bottom-0 -right-20" style="background: rgba(114, 47, 55, 0.05); opacity: 0.5;"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-center text-5xl md:text-6xl text-accent-red mb-24" data-aos="fade-up">Памятка для гостей</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto">
+                <!-- Подарки -->
+                <div class="memo-card p-12" data-aos="fade-up">
+                    <div class="flex items-start mb-8">
+                        <div class="memo-icon-wrapper p-5 rounded-2xl mr-6 text-accent-green">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H4.5a1.5 1.5 0 01-1.5-1.5v-8.25m18 0l-9-5.25L3 11.25m18 0l-9 5.25-9-5.25M12 18.75V11.25" />
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="memo-title serif text-2xl text-accent-green uppercase tracking-widest font-bold">Подарки</h3>
+                            <p class="memo-text text-gray-700 leading-relaxed text-lg">
+                                Мы будем рады любому вкладу в бюджет нашей молодой семьи.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Цветы -->
+                <div class="memo-card p-12" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-start mb-8">
+                        <div class="memo-icon-wrapper p-5 rounded-2xl mr-6 text-accent-green">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-.778.099-1.533.284-2.253" />
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="memo-title serif text-2xl text-accent-green uppercase tracking-widest font-bold">Цветы</h3>
+                            <p class="memo-text text-gray-700 leading-relaxed text-lg">
+                                Мы очень ценим ваше желание подарить нам цветы, но в этот раз будем рады, если вы замените цветы на бутылочку алкоголя.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Обувь -->
+                <div class="memo-card p-12" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-start mb-8">
+                        <div class="memo-icon-wrapper p-5 rounded-2xl mr-6 text-accent-green">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" />
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="memo-title serif text-2xl text-accent-green uppercase tracking-widest font-bold">Обувь</h3>
+                            <p class="memo-text text-gray-700 leading-relaxed text-lg">
+                                Для торжества мы выбрали площадку на природе. В зоне церемонии преобладает грунтовое покрытие, поэтому советуем воздержаться от обуви на высоком каблуке.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Погода -->
+                <div class="memo-card p-12" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-start mb-8">
+                        <div class="memo-icon-wrapper p-5 rounded-2xl mr-6 text-accent-green">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" />
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="memo-title serif text-2xl text-accent-green uppercase tracking-widest font-bold">Погода</h3>
+                            <p class="memo-text text-gray-700 leading-relaxed text-lg">
+                                Вечером может быть прохладно, поэтому возьмите с собой теплую кофту или плед. На случай дождя захватите с собой зонт.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -592,14 +769,12 @@
         // Исправленная анимация ромбов для мобильных устройств
         const colorFlower = document.getElementById('colorFlower');
         
-        colorFlower.addEventListener('click', function(e) {
-            // Предотвращаем срабатывание клика по родительским элементам
-            e.stopPropagation();
-            
-            // Если у нас тач-интерфейс, управляем классом active
-            // Метод toggle вернет true, если класс добавлен, и false, если удален
-            this.classList.toggle('active');
-        });
+        if (colorFlower) {
+            colorFlower.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('active');
+            });
+        }
 
         // Закрываем ромбы при клике в любом другом месте экрана
         document.addEventListener('click', function() {
