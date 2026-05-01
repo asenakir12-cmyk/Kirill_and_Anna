@@ -220,13 +220,11 @@
         }
 
         .map-container iframe {
-            /* Фильтры для достижения приглушенного зеленого стиля */
             filter: sepia(0.4) hue-rotate(80deg) saturate(0.6) brightness(0.9);
             transition: filter 0.5s ease;
         }
 
         .map-container:hover iframe {
-            /* При наведении карта становится чуть четче, но остается в стиле */
             filter: sepia(0.2) hue-rotate(80deg) saturate(0.8) brightness(1);
         }
 
@@ -268,6 +266,8 @@
             justify-content: center;
             border-radius: 16px;
             background: #f9f9f9; 
+            user-select: none;
+            -webkit-user-select: none;
         }
 
         .background-photo-wrapper {
@@ -292,8 +292,8 @@
             display: flex;
             align-items: center; 
             justify-content: center;
-            cursor: pointer;
             perspective: 1000px;
+            pointer-events: auto;
         }
 
         /* Ромбы */
@@ -306,6 +306,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            pointer-events: none; /* Тапаем по общему контейнеру */
         }
 
         .diamond-inner {
@@ -356,30 +357,40 @@
         .rhombus-4 .diamond-inner { background-color: var(--color-olive); }
         .rhombus-5 .diamond-inner { background-color: var(--color-sage); }
 
-        /* Раскладывание в прямую линию */
-        .flower-overlay:hover .diamond-rhombus,
+        /* Раскладывание - поддержка ховера для десктопа и класса active для мобильных */
+        @media (hover: hover) {
+            .flower-overlay:hover .diamond-rhombus { 
+                transform: rotate(0deg) !important;
+                filter: drop-shadow(0 15px 25px rgba(0,0,0,0.5));
+            }
+            .flower-overlay:hover .rhombus-1 { transform: translateX(-200px) !important; }
+            .flower-overlay:hover .rhombus-2 { transform: translateX(-100px) !important; }
+            .flower-overlay:hover .rhombus-3 { transform: translateX(0) scale(1.1) !important; z-index: 20; }
+            .flower-overlay:hover .rhombus-4 { transform: translateX(100px) !important; }
+            .flower-overlay:hover .rhombus-5 { transform: translateX(200px) !important; }
+            .flower-overlay:hover .color-label { opacity: 1; }
+        }
+
+        /* Класс active для принудительного раскрытия (мобильные) */
         .flower-overlay.active .diamond-rhombus { 
             transform: rotate(0deg) !important;
             filter: drop-shadow(0 15px 25px rgba(0,0,0,0.5));
         }
-        
-        .flower-overlay:hover .rhombus-1, .flower-overlay.active .rhombus-1 { transform: translateX(-200px) !important; }
-        .flower-overlay:hover .rhombus-2, .flower-overlay.active .rhombus-2 { transform: translateX(-100px) !important; }
-        .flower-overlay:hover .rhombus-3, .flower-overlay.active .rhombus-3 { transform: translateX(0) scale(1.1) !important; z-index: 20; }
-        .flower-overlay:hover .rhombus-4, .flower-overlay.active .rhombus-4 { transform: translateX(100px) !important; }
-        .flower-overlay:hover .rhombus-5, .flower-overlay.active .rhombus-5 { transform: translateX(200px) !important; }
-        
-        .flower-overlay:hover .color-label, .flower-overlay.active .color-label { 
-            opacity: 1; 
-        }
+        .flower-overlay.active .rhombus-1 { transform: translateX(-200px) !important; }
+        .flower-overlay.active .rhombus-2 { transform: translateX(-100px) !important; }
+        .flower-overlay.active .rhombus-3 { transform: translateX(0) scale(1.1) !important; z-index: 20; }
+        .flower-overlay.active .rhombus-4 { transform: translateX(100px) !important; }
+        .flower-overlay.active .rhombus-5 { transform: translateX(200px) !important; }
+        .flower-overlay.active .color-label { opacity: 1; }
 
         @media (max-width: 640px) {
             .dresscode-stack { max-width: 350px; }
             .diamond-rhombus { width: 70px; height: 120px; }
-            .flower-overlay:hover .rhombus-1, .flower-overlay.active .rhombus-1 { transform: translateX(-120px) !important; }
-            .flower-overlay:hover .rhombus-2, .flower-overlay.active .rhombus-2 { transform: translateX(-60px) !important; }
-            .flower-overlay:hover .rhombus-4, .flower-overlay.active .rhombus-4 { transform: translateX(60px) !important; }
-            .flower-overlay:hover .rhombus-5, .flower-overlay.active .rhombus-5 { transform: translateX(120px) !important; }
+            /* Сдвиги для мобильных при активации */
+            .flower-overlay.active .rhombus-1 { transform: translateX(-120px) !important; }
+            .flower-overlay.active .rhombus-2 { transform: translateX(-60px) !important; }
+            .flower-overlay.active .rhombus-4 { transform: translateX(60px) !important; }
+            .flower-overlay.active .rhombus-5 { transform: translateX(120px) !important; }
             .color-label { font-size: 0.55rem; letter-spacing: 0.1em; }
             .rhombus-4 { z-index: 15; }
             .rhombus-5 { z-index: 14; }
@@ -450,7 +461,7 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=47+км,+Минское+ш.,+д.+45,+Голицыно" target="_blank" class="map-btn-link">Открыть навигатор</a>
                 </div>
                 
-                <!-- БЛОК С КАРТОЙ (Метка настроена на адрес + приглушенный стиль) -->
+                <!-- БЛОК С КАРТОЙ -->
                 <div class="map-container">
                     <iframe 
                         width="100%" 
@@ -496,41 +507,29 @@
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-5xl text-accent-red mb-8" data-aos="fade-up">Дресс-код</h2>
             <p class="serif text-lg text-gray-600 mb-16 max-w-3xl mx-auto" data-aos="fade-up">
-                Мы очень стараемся сделать свадьбу красивой и стильной, поэтому просим вас поддержать цветовую палитру нашей свадьбы.
+                Мы очень стараемся сделать свадьбу красивой и стильной, поэтому просим вас поддержать цветовую палитру нашей свадьбы (нажмите на фото, чтобы увидеть цвета).
             </p>
 
             <div class="dresscode-stack" data-aos="zoom-in">
-                <!-- Фото на фоне -->
                 <div class="background-photo-wrapper">
                     <img src="photo3.jpg" alt="Дресс-код">
                 </div>
                 
-                <!-- Ромбы наложенные в центре картины -->
                 <div class="flower-overlay" id="colorFlower">
                     <div class="diamond-rhombus rhombus-1">
-                        <div class="diamond-inner">
-                            <span class="color-label">Espresso</span>
-                        </div>
+                        <div class="diamond-inner"><span class="color-label">Espresso</span></div>
                     </div>
                     <div class="diamond-rhombus rhombus-2">
-                        <div class="diamond-inner">
-                            <span class="color-label">Burgundy</span>
-                        </div>
+                        <div class="diamond-inner"><span class="color-label">Burgundy</span></div>
                     </div>
                     <div class="diamond-rhombus rhombus-4">
-                        <div class="diamond-inner">
-                            <span class="color-label">Olive</span>
-                        </div>
+                        <div class="diamond-inner"><span class="color-label">Olive</span></div>
                     </div>
                     <div class="diamond-rhombus rhombus-5">
-                        <div class="diamond-inner">
-                            <span class="color-label">Sage</span>
-                        </div>
+                        <div class="diamond-inner"><span class="color-label">Sage</span></div>
                     </div>
                     <div class="diamond-rhombus rhombus-3">
-                        <div class="diamond-inner">
-                            <span class="color-label">Ruby Wine</span>
-                        </div>
+                        <div class="diamond-inner"><span class="color-label">Ruby Wine</span></div>
                     </div>
                 </div>
             </div>
@@ -583,11 +582,23 @@
             document.getElementById('thankYouMessage').classList.remove('hidden');
         });
 
-        // Анимация ромбов для мобильных устройств по тапу (переключатель)
+        // Исправленная анимация ромбов для мобильных устройств
         const colorFlower = document.getElementById('colorFlower');
+        
         colorFlower.addEventListener('click', function(e) {
-            // Переключаем класс active, чтобы ромбы складывались/раскладывались
+            // Предотвращаем срабатывание клика по родительским элементам
+            e.stopPropagation();
+            
+            // Если у нас тач-интерфейс, управляем классом active
+            // Метод toggle вернет true, если класс добавлен, и false, если удален
             this.classList.toggle('active');
+        });
+
+        // Закрываем ромбы при клике в любом другом месте экрана
+        document.addEventListener('click', function() {
+            if (colorFlower.classList.contains('active')) {
+                colorFlower.classList.remove('active');
+            }
         });
     </script>
 </body>
