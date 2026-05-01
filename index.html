@@ -208,6 +208,28 @@
             transform: translateY(-2px);
         }
 
+        /* КАРТА С ПРИГЛУШЕННЫМ ЗЕЛЕНЫМ ФИЛЬТРОМ */
+        .map-container {
+            width: 300px;
+            height: 200px;
+            margin: 2rem auto 0;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: #2b3d2e;
+        }
+
+        .map-container iframe {
+            /* Фильтры для достижения приглушенного зеленого стиля */
+            filter: sepia(0.4) hue-rotate(80deg) saturate(0.6) brightness(0.9);
+            transition: filter 0.5s ease;
+        }
+
+        .map-container:hover iframe {
+            /* При наведении карта становится чуть четче, но остается в стиле */
+            filter: sepia(0.2) hue-rotate(80deg) saturate(0.8) brightness(1);
+        }
+
         .timeline-item {
             position: relative;
             padding-left: 2rem;
@@ -240,12 +262,12 @@
             position: relative;
             max-width: 600px; 
             margin: 0 auto;
-            aspect-ratio: 768/1167; /* Точное соответствие пропорциям вашего фото */
+            aspect-ratio: 768/1167; 
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 16px;
-            background: #f9f9f9; /* Светлый фон для пустых областей, если возникнут */
+            background: #f9f9f9; 
         }
 
         .background-photo-wrapper {
@@ -257,7 +279,7 @@
         .background-photo-wrapper img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Теперь фото отображается полностью без обрезки */
+            object-fit: contain; 
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
@@ -305,7 +327,6 @@
             z-index: 1;
         }
 
-        /* Обновленный шрифт для названий */
         .color-label {
             color: white;
             font-family: 'Montserrat', sans-serif;
@@ -360,9 +381,9 @@
             .flower-overlay:hover .rhombus-4, .flower-overlay.active .rhombus-4 { transform: translateX(60px) !important; }
             .flower-overlay:hover .rhombus-5, .flower-overlay.active .rhombus-5 { transform: translateX(120px) !important; }
             .color-label { font-size: 0.55rem; letter-spacing: 0.1em; }
-            /* Меняем порядок наложения: sage под olive */
             .rhombus-4 { z-index: 15; }
             .rhombus-5 { z-index: 14; }
+            .map-container { width: 260px; height: 180px; }
         }
     </style>
 </head>
@@ -426,7 +447,20 @@
                     <p class="text-xs text-white uppercase tracking-wider">Внимание! Нет съезда с платной дороги!</p>
                 </div>
                 <div>
-                    <a href="https://maps.app.goo.gl/g533tmErbQ3zAUQb8" target="_blank" class="map-btn-link">Открыть навигатор</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=47+км,+Минское+ш.,+д.+45,+Голицыно" target="_blank" class="map-btn-link">Открыть навигатор</a>
+                </div>
+                
+                <!-- БЛОК С КАРТОЙ (Метка настроена на адрес + приглушенный стиль) -->
+                <div class="map-container">
+                    <iframe 
+                        width="100%" 
+                        height="100%" 
+                        frameborder="0" 
+                        style="border:0" 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2251.48834468694!2d36.98595807!3d55.61085027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46cad74e79782559%3A0x6730337353f47e70!2z0JzQuNC90YHQutC-0LUg0YguLCA0NSwg0JPQvtC70LjRhtGL0L3Qviwg0JzQvtGB0LrQvtCy0YHQutCw0Y8g0L7QsdC7LiwgMTQzMDQw!5e0!3m2!1sru!2sru!4v1715424560000!5m2!1sru!2sru" 
+                        allowfullscreen 
+                        loading="lazy">
+                    </iframe>
                 </div>
             </div>
         </div>
@@ -552,7 +586,7 @@
         // Анимация ромбов для мобильных устройств по тапу (переключатель)
         const colorFlower = document.getElementById('colorFlower');
         colorFlower.addEventListener('click', function(e) {
-            // Предотвращаем срабатывание стандартных событий, если нужно
+            // Переключаем класс active, чтобы ромбы складывались/раскладывались
             this.classList.toggle('active');
         });
     </script>
