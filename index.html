@@ -360,6 +360,9 @@
             .flower-overlay:hover .rhombus-4, .flower-overlay.active .rhombus-4 { transform: translateX(60px) !important; }
             .flower-overlay:hover .rhombus-5, .flower-overlay.active .rhombus-5 { transform: translateX(120px) !important; }
             .color-label { font-size: 0.55rem; letter-spacing: 0.1em; }
+            /* Меняем порядок наложения: sage под olive */
+            .rhombus-4 { z-index: 15; }
+            .rhombus-5 { z-index: 14; }
         }
     </style>
 </head>
@@ -546,9 +549,10 @@
             document.getElementById('thankYouMessage').classList.remove('hidden');
         });
 
-        // Анимация ромбов для мобильных устройств по клику
+        // Анимация ромбов для мобильных устройств по тапу (переключатель)
         const colorFlower = document.getElementById('colorFlower');
-        colorFlower.addEventListener('click', function() {
+        colorFlower.addEventListener('click', function(e) {
+            // Предотвращаем срабатывание стандартных событий, если нужно
             this.classList.toggle('active');
         });
     </script>
