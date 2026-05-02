@@ -48,31 +48,51 @@
 }
 
 /* Кнопка с эффектом стекла */
-.glass-btn {
-    background: var(--glass-wine-gradient);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.4s ease;
-}
+ .glass-btn {
+            background: var(--glass-wine-gradient);
+            color: white;
+            padding: 1.2rem;
+            border-radius: 100px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            width: 100%;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 20px rgba(114, 47, 55, 0.15);
+        }
+
+        .glass-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(114, 47, 55, 0.25);
+        }
 
 /* Стиль вариантов ответа (шрифт Comfortaa) */
 .option-card {
-    font-family: 'Comfortaa', sans-serif;
-    background: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    border-radius: 18px;
-    cursor: pointer;
-    transition: all 0.4s ease;
-}
+            font-family: 'Comfortaa', sans-serif;
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 16px;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            font-size: 0.85rem;
+        }
 
-/* Состояние при выборе */
-input[type="radio"]:checked + .option-card {
-    border-color: var(--cool-berry-red);
-    color: var(--cool-berry-red);
-    background: #fffafa;
-    box-shadow: inset 0 0 0 1px var(--cool-berry-red);
-}
+        input[type="radio"] { display: none; }
+        
+        input[type="radio"]:checked + .option-card {
+            background: #fffafa;
+            border-color: var(--cool-berry-red);
+            color: var(--cool-berry-red);
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(114, 47, 55, 0.1);
+        }
 
         /* Главный экран */
          .hero-section {
@@ -972,6 +992,8 @@ input[type="radio"]:checked + .option-card {
                 }, 1000);
             });
         }
+
+        
     </script>
 </body>
 </html>
