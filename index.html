@@ -379,6 +379,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            touch-action: manipulation;
         }
         
         /* 1. Линия должна всегда быть по центру */
@@ -960,6 +961,7 @@
     </footer>
 
     <script>
+        window.onload = function() {
         AOS.init({ duration: 1200, once: true });
 
         document.getElementById('rsvpForm').addEventListener('submit', function(e) {
@@ -1013,36 +1015,8 @@
                     }, 1000);
                 });
             }
+            
         };
-        
-        
-        
-        
-        const surveyForm = document.getElementById('weddingSurvey');
-        const thanksMessage = document.getElementById('surveyThanks');
-        const submitBtn = document.getElementById('submitBtn');
-
-        if (surveyForm) {
-            surveyForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                submitBtn.disabled = true;
-                submitBtn.innerText = 'ОТПРАВКА...';
-
-                // Имитация задержки отправки
-                setTimeout(() => {
-                    this.style.transition = 'opacity 0.5s';
-                    this.style.opacity = '0';
-                    setTimeout(() => {
-                        this.classList.add('hidden');
-                        thanksMessage.classList.remove('hidden');
-                        thanksMessage.style.opacity = '0';
-                        setTimeout(() => thanksMessage.style.opacity = '1', 50);
-                    }, 500);
-                }, 1000);
-            });
-        }
-
-        
     </script>
 </body>
 </html>
