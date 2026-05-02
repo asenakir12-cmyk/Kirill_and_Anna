@@ -25,8 +25,6 @@
             --color-ruby: #6C0B25;
             --color-olive: #64652A;
             --color-sage: #B5AD80;
-            --berry-gradient: linear-gradient(135deg, #722F37 0%, #a44a53 50%, #722F37 100%);
-            --glass-wine-gradient: linear-gradient(135deg, rgba(164, 74, 83, 0.8) 0%, rgba(114, 47, 55, 0.9) 100%);
         }
 
         body {
@@ -35,7 +33,12 @@
             color: #333;
             overflow-x: hidden;
         }
-    
+        
+        :root {
+    --cool-berry-red: #722F37;
+    --berry-gradient: linear-gradient(135deg, #722F37 0%, #a44a53 50%, #722F37 100%);
+    --glass-wine-gradient: linear-gradient(135deg, rgba(164, 74, 83, 0.8) 0%, rgba(114, 47, 55, 0.9) 100%);
+}
 
 /* Карточка с эффектом стекла */
 .premium-form-card {
@@ -891,11 +894,6 @@ input[type="radio"]:checked + .option-card {
             </div>
         </div>
     </div>
-</section>
-    <section class="pt-0 pb-24 bg-white overflow-hidden">
-    <div class="secondary-photo-container">
-                    <img src="photo7.jpg" alt="[Фото пары]" class="secondary-photo" onerror="this.style.display='none';">
-                </div>
 </section>
 
     <footer class="py-16 text-center border-t border-gray-100">
