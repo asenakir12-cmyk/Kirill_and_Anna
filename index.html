@@ -39,13 +39,17 @@
 
 /* Карточка с эффектом стекла */
 .premium-form-card {
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.05);
-    border-radius: 40px;
-}
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
+            border-radius: 40px;
+            /* Явные отступы для всех экранов */
+            padding: 4rem 3rem; 
+            margin: 0 auto;
+            width: 100%;
+        }
    .info-highlight-box {
             background-color: rgba(114, 47, 55, 0.03);
             border-left: 3px solid var(--cool-berry-red);
@@ -472,7 +476,7 @@
         }
         
         /* Стили для иконок и текста внутри карточек */
-        .icon-box-premium {
+        .icon-box- {
             width: 60px;
             height: 60px;
             margin-bottom: 25px;
@@ -480,12 +484,12 @@
             transition: all 0.5s ease;
         }
         
-        .modern-info-card:hover .icon-box-premium {
+        .modern-info-card:hover .icon-box- {
             color: #C5A059;
             transform: scale(1.1);
         }
         
-        .premium-divider {
+        .-divider {
             width: 40px;
             height: 1px;
             background: #C5A059;
@@ -494,7 +498,7 @@
             transition: width 0.5s ease;
         }
         
-        .modern-info-card:hover .premium-divider {
+        .modern-info-card:hover .-divider {
             width: 80px;
             opacity: 1;
         }
@@ -562,6 +566,9 @@
             .dresscode-text-container p {
                 width: 100% !important;
                 margin: 0 auto !important;
+            }
+             .premium-form-card { 
+                padding: 3rem 1.5rem; /* Уменьшаем на мобильных, но оставляем зазор */
             }
         }
     </style>
@@ -757,29 +764,29 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
             <!-- Карточка 1 -->
             <div class="modern-info-card" data-aos="fade-up">
-                <div class="icon-box-premium">
+                <div class="icon-box-">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
                         <path d="M20 12v10H4V12M2 7h20v5H2z M12 22V7 M12 7c-2.5 0-4.5-2-4.5-4.5S9.5 2 12 2s4.5 2 4.5 4.5S14.5 7 12 7z" />
                     </svg>
                 </div>
                 <h3 class="text-xl font-serif mb-2">Подарки</h3>
-                <div class="premium-divider"></div>
+                <div class="-divider"></div>
                 <p class="text-sm text-gray-500 font-light leading-relaxed">Мы будем рады любому вкладу в бюджет нашей молодой семьи.</p>
             </div>
             <!-- Карточка 2 -->
             <div class="modern-info-card" data-aos="fade-up">
-                <div class="icon-box-premium">
+                <div class="icon-box-">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
                         <path d="M6 9V7a6 6 0 0112 0v2 M4 9h16l-2 11H6L4 9z M9 13a3 3 0 016 0 M12 9v4" />
                     </svg>
                 </div>
                 <h3 class="text-xl font-serif mb-2">Цветы</h3>
-                <div class="premium-divider"></div>
+                <div class="-divider"></div>
                 <p class="text-sm text-gray-500 font-light leading-relaxed">Мы очень ценим ваше желание подарить нам цветы, но в этот раз будем рады, если вы замените цветы на бутылочку алкоголя.</p>
             </div>
             <!-- Карточка 3 -->
             <div class="modern-info-card" data-aos="fade-up">
-                <div class="icon-box-premium">
+                <div class="icon-box-">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
                         <path d="M3 17.5h18l-1.5-3.5h-5l-3.5-5.5h-5l-3 9z M6 13h4 M14 9l3 4.5 M21 17.5a1.5 1.5 0 01-1.5 1.5H4.5A1.5 1.5 0 013 17.5" />
                     </svg>
@@ -859,6 +866,8 @@
     <section class="pt-0 py-24 bg-white">
     <div class="container mx-auto px-4 max-w-3xl">
         <div class="premium-form-card" data-aos="fade-up">
+             <!-- Обертка с ограничением ширины для контента внутри карточки -->
+                <div class="max-w-md mx-auto">
             <header class="text-center mb-10">
                 <h2 class="cursive text-5xl text-accent-red mb-4">Анкета гостя</h2>
                 <div class="berry-line"></div>
@@ -883,7 +892,7 @@
 
                 <!-- Присутствие -->
                 <div class="space-y-6">
-                    <p class="rounded-text text-2xl text-center italic">Планируете ли вы прийти на свадьбу?</p>
+                    <p class="rounded-text text-2xl text-center leading-relaxed">Планируете ли вы прийти на свадьбу?</p>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <label>
                             <input type="radio" name="presence" value="Да, с удовольствием" required>
@@ -898,7 +907,7 @@
 
                 <!-- Алкоголь -->
                 <div class="space-y-6">
-                    <p class="rounded-text text-2xl text-center italic">Какой алкоголь вы предпочитаете?</p>
+                    <p class="rounded-text text-2xl text-center leading-relaxed">Какой алкоголь вы предпочитаете?</p>
                     <div class="alcohol-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px;">
                         <label><input type="radio" name="alcohol" value="Шампанское" required><div class="option-card">Шампанское</div></label>
                         <label><input type="radio" name="alcohol" value="Вино белое сухое"><div class="option-card">Вино белое сухое</div></label>
