@@ -373,6 +373,9 @@
             border-radius: 60px 60px 15px 15px;
             transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
             cursor: pointer;
+            position: relative;
+            z-index: 10;
+            -webkit-tap-highlight-color: transparent; /* Убирает синюю рамку на iOS */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -964,26 +967,56 @@
             this.classList.add('hidden');
             document.getElementById('thankYouMessage').classList.remove('hidden');
         });
-        // Улучшение работы дресс-кода на мобильных
-        const pillars = document.querySelectorAll('.color-pillar');
-        pillars.forEach(pillar => {
-            pillar.addEventListener('click', function(e) {
-                // Если этот столбик уже активен, закрываем его
-                if (this.classList.contains('active')) {
-                    this.classList.remove('active');
-                } else {
-                    // Закрываем все остальные и открываем текущий
-                    pillars.forEach(p => p.classList.remove('active'));
-                    this.classList.add('active');
-                }
-                e.stopPropagation();
-            });
-        });
 
-        // Закрытие при клике в любое другое место
-        document.addEventListener('click', () => {
-            pillars.forEach(p => p.classList.remove('active'));
-        });
+ const pillars = document.querySelectorAll('.color-pillar');
+
+            function togglePillar(el, e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                if (el.classList.contains('active')) {
+                    el.classList.remove('active');
+                } else {
+                    pillars.forEach(p => p.classList.remove('active'));
+                    el.classList.add('active');
+                }
+            }
+
+            pillars.forEach(pillar => {
+                // Добавляем и клик, и тач для надежности
+                pillar.addEventListener('click', function(e) { togglePillar(this, e); });
+                pillar.addEventListener('touchstart', function(e) { togglePillar(this, e); }, {passive: false});
+            });
+
+            document.addEventListener('click', function() {
+                pillars.forEach(p => p.classList.remove('active'));
+            });
+            
+            // Фикс для тача на всем документе
+            document.addEventListener('touchstart', function(e) {
+                if (!e.target.closest('.color-pillar')) {
+                    pillars.forEach(p => p.classList.remove('active'));
+                }
+            }, {passive: true});
+
+            const form = document.getElementById('weddingSurvey');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const btn = document.getElementById('submitBtn');
+                    btn.disabled = true;
+                    btn.innerText = 'ОТПРАВКА...';
+
+                    setTimeout(() => {
+                        form.classList.add('hidden');
+                        document.getElementById('surveyThanks').classList.remove('hidden');
+                    }, 1000);
+                });
+            }
+        };
+        
+        
+        
         
         const surveyForm = document.getElementById('weddingSurvey');
         const thanksMessage = document.getElementById('surveyThanks');
