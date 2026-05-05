@@ -423,12 +423,15 @@
             position: relative;
             z-index: 10;
             -webkit-tap-highlight-color: transparent; /* Убирает синюю рамку на iOS */
+            user-select: none;
+            -webkit-user-select: none;
             display: flex;
             align-items: center;
             justify-content: center;
             touch-action: manipulation;
         }
-        
+
+       
         /* 1. Линия должна всегда быть по центру */
         .timeline-center::after {
             content: '';
