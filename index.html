@@ -30,12 +30,17 @@
         }
 
         body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-family: 'Cormorant Infant', Helvetica, Arial, sans-serif;
             background-color: #ffffff;
             color: #333;
             overflow-x: hidden;
         }
-    
+    /* Стиль для имен: Cormorant Infant */
+        .infant-font {
+            font-family: "Cormorant Infant", serif;
+            font-weight: 300;
+            font-style: normal;
+        }
 
 /* Карточка с эффектом стекла */
 .premium-form-card {
@@ -601,10 +606,10 @@
             <div data-aos="fade-down" data-aos-duration="1500">
                 <h1 class="hero-initials text-7xl md:text-[9rem] text-white mt-6 mb-2">К & А</h1>
             </div>
-            <div class="mt-12">
-                <!-- Кирилл и Анна теперь с более утонченной А -->
-                <p class="cursive text-5xl text-stone-700 tracking-wide">
-                    Кирилл и <span class="alt-capital">А</span>нна
+            <div class="mt-12 bg-stone-200/40 py-12 px-10 rounded-[3.5rem] backdrop-blur-md">
+                <!-- Надпись шрифтом Cormorant Infant -->
+                <p class="infant-font text-5xl md:text-7xl names-title">
+                    Кирилл и Анна
                 </p>
             </div>
              <!-- Обертка для нижнего текста, чтобы было удобно регулировать отступ -->
@@ -618,7 +623,7 @@
     <!-- Основной блок -->
     <section class="pt-16 bg-white">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-5xl md:text-6xl text-accent-red mb-16" data-aos="fade-up">
+            <h2 class=" text-5xl md:text-6xl text-accent-red mb-16" data-aos="fade-up">
                 <span class="mobile-title-break">Дорогие</span> родные и близкие!
             </h2>
             
