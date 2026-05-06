@@ -829,7 +829,7 @@
             <h2 class="infant-font-main text-5xl text-accent-red mb-8">Памятка гостям</h2>
         </div>
         
-        <div class="pt-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1 max-w-7xl mx-auto">
+        <div class="pt-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
             <!-- Карточка 1 -->
             <div class="modern-info-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="icon-box-premium">
@@ -1088,9 +1088,22 @@
                         document.getElementById('surveyThanks').classList.remove('hidden');
                     }, 1000);
                 });
+
+                // Явная обработка конца касания для Safari/iOS
+                // Используем touchend, так как он срабатывает в Safari без задержек
+                pillar.addEventListener('touchend', function(e) {
+                    // Предотвращаем двойное срабатывание (click + touchend)
+                    // Но позволяем скроллинг страницы
             }
+
+
+         
+
+            
             
         };
+
+        
     </script>
 </body>
 </html>
