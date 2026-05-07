@@ -1097,7 +1097,40 @@
             
             
         };
+ // Универсальная функция переключения
+        function handlePillarClick(el) {
+            if (window.innerWidth < 1024) {
+                const wasActive = el.classList.contains('active');
+                
+                // Снимаем активность со всех
+                document.querySelectorAll('.color-pillar').forEach(p => p.classList.remove('active'));
+                
+                // Если не был активен - активируем
+                if (!wasActive) {
+                    el.classList.add('active');
+                }
+            }
+        }
 
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({ duration: 1000, once: true });
+
+            const pillars = document.querySelectorAll('.color-pillar');
+            
+            pillars.forEach(pillar => {
+                // Обработка клика (для всех браузеров)
+                pillar.addEventListener('click', function(e) {
+                    handlePillarClick(this);
+                });
+
+                // Явная обработка конца касания для Safari/iOS
+                // Используем touchend, так как он срабатывает в Safari без задержек
+                pillar.addEventListener('touchend', function(e) {
+                    // Предотвращаем двойное срабатывание (click + touchend)
+                    // Но позволяем скроллинг страницы
+                });
+            });
+        });
         
     </script>
 </body>
