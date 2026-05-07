@@ -1130,7 +1130,47 @@
                     // Но позволяем скроллинг страницы
                 });
             });
+            // Обработка карточек памятки для Safari
+            const infoCards = document.querySelectorAll('.modern-info-card');
+            infoCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Здесь можно добавить логику активации, если нужно
+                    // Для Safari сам факт наличия слушателя и tabindex/role делает блок "тапабельным"
+                    this.style.opacity = '0.7';
+                    setTimeout(() => { this.style.opacity = '1'; }, 100);
+                });
+                card.addEventListener('touchend', function(e) {}, {passive: true});
+            });
         });
+
+ // document.addEventListener('DOMContentLoaded', function() {
+ //            AOS.init({ duration: 1000, once: true });
+
+ //            // Обработка палитры
+ //            const pillars = document.querySelectorAll('.color-pillar');
+ //            pillars.forEach(pillar => {
+ //                pillar.addEventListener('click', function() {
+ //                    handlePillarClick(this);
+ //                });
+ //                pillar.addEventListener('touchend', function(e) {}, {passive: true});
+ //            });
+
+ //            // Обработка карточек памятки для Safari
+ //            const infoCards = document.querySelectorAll('.modern-info-card');
+ //            infoCards.forEach(card => {
+ //                card.addEventListener('click', function() {
+ //                    // Здесь можно добавить логику активации, если нужно
+ //                    // Для Safari сам факт наличия слушателя и tabindex/role делает блок "тапабельным"
+ //                    this.style.opacity = '0.7';
+ //                    setTimeout(() => { this.style.opacity = '1'; }, 100);
+ //                });
+ //                card.addEventListener('touchend', function(e) {}, {passive: true});
+ //            });
+ //        });
+
+
+
+
         
     </script>
 </body>
