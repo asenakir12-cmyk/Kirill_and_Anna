@@ -1021,11 +1021,13 @@
                 </button>
             </form>
 
-            <!-- Сообщение после отправки -->
-            <div id="surveyThanks" class="hidden text-center py-12">
-                <h3 class="cursive text-5xl text-accent-red mb-4">Благодарим!</h3>
-                <p class="text-stone-500 font-medium">Ваш ответ успешно отправлен. До встречи на празднике!</p>
-            </div>
+           <div id="successMsg" class="hidden text-center py-10">
+                    <div class="w-20 h-20 bg-stone-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="check" class="text-stone-800"></i>
+                    </div>
+                    <h3 class="text-3xl font-serif italic mb-2">Благодарим!</h3>
+                    <p class="text-stone-500">Ваш ответ успешно получен.</p>
+                </div>
         </div>
     </div>
 </section>
@@ -1091,23 +1093,7 @@
                 }
             }, {passive: true});
 
-            const form = document.getElementById('weddingSurvey');
-            if (form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const btn = document.getElementById('submitBtn');
-                    btn.disabled = true;
-                    btn.innerText = 'ОТПРАВКА...';
-
-                    setTimeout(() => {
-                        form.classList.add('hidden');
-                        document.getElementById('surveyThanks').classList.remove('hidden');
-                    }, 1000);
-                });
-
-                
- }
-
+           
          
 
             
@@ -1159,69 +1145,60 @@
             });
         });
 
- // document.addEventListener('DOMContentLoaded', function() {
- //            AOS.init({ duration: 1000, once: true });
 
- //            // Обработка палитры
- //            const pillars = document.querySelectorAll('.color-pillar');
- //            pillars.forEach(pillar => {
- //                pillar.addEventListener('click', function() {
- //                    handlePillarClick(this);
- //                });
- //                pillar.addEventListener('touchend', function(e) {}, {passive: true});
- //            });
 
- //            // Обработка карточек памятки для Safari
- //            const infoCards = document.querySelectorAll('.modern-info-card');
- //            infoCards.forEach(card => {
- //                card.addEventListener('click', function() {
- //                    // Здесь можно добавить логику активации, если нужно
- //                    // Для Safari сам факт наличия слушателя и tabindex/role делает блок "тапабельным"
- //                    this.style.opacity = '0.7';
- //                    setTimeout(() => { this.style.opacity = '1'; }, 100);
- //                });
- //                card.addEventListener('touchend', function(e) {}, {passive: true});
- //            });
+
+        
+      // ВАЖНО: Вставьте сюда ваш URL после развертывания Google Apps Script
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbww95eZLJNwrQD1tMfyhHHpRg-p5B1Uot5RY1chexb87MckqBkFtEAt_NrZc7iAD1wc/exec"; 
 
-       const form = document.getElementById('weddingSurvey');
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({ duration: 1000, once: true });
+            
+            const form = document.getElementById('weddingSurvey');
             const btn = document.getElementById('submitBtn');
             const thanks = document.getElementById('surveyThanks');
-            const errorMsg = document.getElementById('surveyError');
 
             if (form) {
                 form.addEventListener('submit', function(e) {
                     e.preventDefault();
                     
+                    if (SCRIPT_URL === "ВАШ_URL_СКРИПТА_GOOGLE") {
+                        alert("Пожалуйста, укажите URL вашего скрипта в коде!");
+                        return;
+                    }
+
                     btn.disabled = true;
                     btn.innerText = "ОТПРАВКА...";
-                    errorMsg.classList.add('hidden');
 
                     const formData = new FormData(form);
                     
-                    // Отправляем данные методом POST на Google Apps Script
                     fetch(SCRIPT_URL, {
                         method: 'POST',
                         body: formData
                     })
                     .then(response => {
-                        // Даже если CORS ругается, данные обычно доходят. 
-                        // Apps Script часто возвращает редирект, что fetch воспринимает как ошибку.
-                        // Поэтому мы просто проверяем успех операции.
-                        form.classList.add('hidden');
+                        form.style.display = 'none';
                         thanks.classList.remove('hidden');
                         thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     })
                     .catch(error => {
                         console.error('Error!', error.message);
-                        // Показываем успех в любом случае, так как Google Script часто 
-                        // успешно записывает данные, но блокирует ответ из-за CORS
-                        form.classList.add('hidden');
-                        thanks.classList.remove('hidden');
+                        btn.disabled = false;
+                        btn.innerText = "ОТПРАВИТЬ АНКЕТУ";
                     });
                 });
             }
- //        });
+
+            document.querySelectorAll('.color-pillar').forEach(p => {
+                p.addEventListener('click', function() {
+                    const wasActive = this.classList.contains('active');
+                    document.querySelectorAll('.color-pillar').forEach(item => item.classList.remove('active'));
+                    if (!wasActive) this.classList.add('active');
+                });
+            });
+        });
+
 
 
 
