@@ -1016,7 +1016,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="glass-btn w-full text-white py-5 rounded-full uppercase tracking-[0.3em] text-xs font-bold shadow-lg">
+                <button type="submit" id="submitBtn"  class="glass-btn w-full text-white py-5 rounded-full uppercase tracking-[0.3em] text-xs font-bold shadow-lg">
                     Отправить анкету
                 </button>
             </form>
@@ -1140,48 +1140,56 @@
                 });
                 card.addEventListener('touchend', function(e) {}, {passive: true});
             });
-            const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwl9eBNByF94ejObgO8wGdnlF99J2KXhK-rpmz0b9wlyjeQ0v2OGmULs_dYW7vBe8OF/exec"; 
+            
+        });
+
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxjrGu3Sws0kYHZdyr4kS4vOLxU1XMGcrTbrZgfmyE1HDN-0M43MQ_T7CbhxALHmRwT/exec"; 
+
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({ duration: 1000, once: true });
+            
             const form = document.getElementById('weddingSurvey');
-            const btn = document.getElementById('submit');
+            const btn = document.getElementById('submitBtn');
             const thanks = document.getElementById('surveyThanks');
 
             if (form) {
                 form.addEventListener('submit', function(e) {
                     e.preventDefault();
                     
-                    console.log("Отправка данных...");
-
-                    // Визуальная блокировка кнопки
+                    // Блокируем кнопку сразу
                     btn.disabled = true;
-                    btn.innerText = "ОТПРАВКА...";
+                    btn.innerText = "ОТПРАВЛЯЕМ...";
 
                     const formData = new FormData(form);
+                    const params = new URLSearchParams();
+                    formData.forEach((value, key) => params.append(key, value));
 
-                    // Используем mode: 'no-cors' для обхода CORS ограничений Google Scripts
+                    // Отправляем данные
                     fetch(SCRIPT_URL, {
                         method: 'POST',
-                        body: formData,
-                        mode: 'no-cors'
+                        body: params,
+                        mode: 'no-cors', // Обязательно для Google
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
                     })
                     .then(() => {
-                        console.log("Запрос ушел.");
-                        // В режиме no-cors мы не получаем ответ, но запрос отправляется.
-                        // Поэтому скрываем форму сразу.
-                        form.classList.add('hidden');
+                        // В режиме no-cors мы не ждем реального ответа 'ok', 
+                        // так как Google его не возвращает браузеру в этом режиме.
+                        // Просто скрываем форму.
+                        form.style.display = 'none';
                         thanks.classList.remove('hidden');
                         thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     })
                     .catch(error => {
-                        console.error('Ошибка:', error);
-                        alert("Не удалось отправить анкету. Проверьте подключение к интернету.");
+                        console.error('Fetch error:', error);
+                        alert("Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.");
                         btn.disabled = false;
                         btn.innerText = "ОТПРАВИТЬ АНКЕТУ";
                     });
                 });
             }
         });
-
-        
     </script>
 </body>
 </html>
