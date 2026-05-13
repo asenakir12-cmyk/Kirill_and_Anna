@@ -1146,10 +1146,7 @@
         });
 
 
-
-
-        
-      // ВАЖНО: Вставьте сюда ваш URL после развертывания Google Apps Script
+     // ВАЖНО: Вставьте сюда ваш URL после развертывания Google Apps Script
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwl9eBNByF94ejObgO8wGdnlF99J2KXhK-rpmz0b9wlyjeQ0v2OGmULs_dYW7vBe8OF/exec"; 
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -1173,17 +1170,21 @@
 
                     const formData = new FormData(form);
                     
+                    // Используем mode: 'no-cors' для обхода проблем с политикой Google
                     fetch(SCRIPT_URL, {
                         method: 'POST',
-                        body: formData
+                        body: formData,
+                        mode: 'no-cors'
                     })
-                    .then(response => {
+                    .then(() => {
+                        // При no-cors мы не можем прочитать ответ, но запрос уходит.
+                        // Поэтому сразу показываем сообщение об успехе.
                         form.style.display = 'none';
                         thanks.classList.remove('hidden');
                         thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     })
                     .catch(error => {
-                        console.error('Error!', error.message);
+                        console.error('Ошибка отправки:', error);
                         btn.disabled = false;
                         btn.innerText = "ОТПРАВИТЬ АНКЕТУ";
                     });
