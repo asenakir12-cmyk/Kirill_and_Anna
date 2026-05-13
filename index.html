@@ -1146,7 +1146,7 @@
         });
 
 
-     // ВАЖНО: Вставьте сюда ваш URL после развертывания Google Apps Script
+ // Ссылка на ваш Google Apps Script
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwl9eBNByF94ejObgO8wGdnlF99J2KXhK-rpmz0b9wlyjeQ0v2OGmULs_dYW7vBe8OF/exec"; 
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -1160,47 +1160,39 @@
                 form.addEventListener('submit', function(e) {
                     e.preventDefault();
                     
-                    if (SCRIPT_URL === "ВАШ_URL_СКРИПТА_GOOGLE") {
-                        alert("Пожалуйста, укажите URL вашего скрипта в коде!");
-                        return;
-                    }
+                    console.log("Отправка данных...");
 
+                    // Визуальная блокировка кнопки
                     btn.disabled = true;
                     btn.innerText = "ОТПРАВКА...";
 
                     const formData = new FormData(form);
-                    
-                    // Используем mode: 'no-cors' для обхода проблем с политикой Google
+
+                    // Используем mode: 'no-cors' для обхода CORS ограничений Google Scripts
                     fetch(SCRIPT_URL, {
                         method: 'POST',
                         body: formData,
                         mode: 'no-cors'
                     })
                     .then(() => {
-                        // При no-cors мы не можем прочитать ответ, но запрос уходит.
-                        // Поэтому сразу показываем сообщение об успехе.
-                        form.style.display = 'none';
+                        console.log("Запрос ушел.");
+                        // В режиме no-cors мы не получаем ответ, но запрос отправляется.
+                        // Поэтому скрываем форму сразу.
+                        form.classList.add('hidden');
                         thanks.classList.remove('hidden');
                         thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     })
                     .catch(error => {
-                        console.error('Ошибка отправки:', error);
+                        console.error('Ошибка:', error);
+                        alert("Не удалось отправить анкету. Проверьте подключение к интернету.");
                         btn.disabled = false;
                         btn.innerText = "ОТПРАВИТЬ АНКЕТУ";
                     });
                 });
             }
 
-            document.querySelectorAll('.color-pillar').forEach(p => {
-                p.addEventListener('click', function() {
-                    const wasActive = this.classList.contains('active');
-                    document.querySelectorAll('.color-pillar').forEach(item => item.classList.remove('active'));
-                    if (!wasActive) this.classList.add('active');
-                });
-            });
+           
         });
-
-
 
 
 
