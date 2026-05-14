@@ -240,7 +240,7 @@
         .calendar-day-name {
             font-weight: 800;
             font-size: 0.9rem; 
-            color: var(--cool-emerald-green);
+            color: var(--cool-emerald-red);
             margin-bottom: 12px;
             text-transform: uppercase;
         }
@@ -303,7 +303,7 @@
             content: '';
             position: absolute;
             width: 2px;
-            background: linear-gradient(180deg, transparent 0%, var(--cool-emerald-green) 15%, var(--cool-emerald-green) 85%, transparent 100%);
+            background: linear-gradient(180deg, transparent 0%, var(--cool-emerald-red) 15%, var(--cool-emerald-red) 85%, transparent 100%);
             opacity: 0.2;
             top: 0;
             bottom: 0;
@@ -332,7 +332,7 @@
             width: 12px;
             height: 12px;
             background: white;
-            border: 2px solid var(--cool-emerald-green);
+            border: 2px solid var(--cool-emerald-red);
             border-radius: 50%;
             z-index: 2;
         }
@@ -353,8 +353,8 @@
             align-items: center;
             margin-top: 1.5rem;
             padding: 14px 40px;
-            border: 1px solid var(--cool-emerald-green);
-            color: var(--cool-emerald-green);
+            border: 1px solid var(--cool-emerald-red);
+            color: var(--cool-emerald-red);
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
@@ -366,7 +366,7 @@
         }
 
         .map-btn-link:hover {
-            background: var(--cool-emerald-green);
+            background: var(--cool-emerald-red);
             color: white;
             transform: translateY(-2px);
         }
@@ -396,12 +396,12 @@
             top: 8px;
             width: 14px;
             height: 14px;
-            background: var(--cool-emerald-green);
+            background: var(--cool-emerald-red);
             border-radius: 50%; /* Скругленные маркеры таймлайна */
         }
 
         .btn-submit {
-            background-color: var(--cool-emerald-green);
+            background-color: var(--cool-emerald-red);
             transition: all 0.3s ease;
             border-radius: 50px;
         }
@@ -644,7 +644,7 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <div data-aos="fade-down" data-aos-duration="1500">
-                <h1 class="initials-font_y text-[80px] md:text-[180px] text-white mt-10 mb-6">K&A</h1>
+                <h1 class="initials-font_y text-[80px] md:text-[180px] text-white mt-10 mb-0">K&A</h1>
             </div>
             
             <div class="py-10">
@@ -671,7 +671,7 @@
             
             <!-- Календарь -->
             <div class="calendar-container mb-12" data-aos="zoom-in">
-                <div class="rounded-text text-xl mb-6 text-accent-green font-bold tracking-widest">СЕНТЯБРЬ 2026</div>
+                <div class="rounded-text text-xl mb-6 text-accent-red font-bold tracking-widest">СЕНТЯБРЬ 2026</div>
                 <div class="calendar-grid">
                     <div class="calendar-day-name">Пн</div><div class="calendar-day-name">Вт</div><div class="calendar-day-name">Ср</div><div class="calendar-day-name">Чт</div><div class="calendar-day-name">Пт</div><div class="calendar-day-name">Сб</div><div class="calendar-day-name">Вс</div>
                     <div class="calendar-day"></div><div class="calendar-day">1</div><div class="calendar-day">2</div><div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div>
@@ -701,12 +701,12 @@
                 <!-- Блок локации без карточки -->
                 <div class="location-section" data-aos="fade-up">
                     <span class="text-xs tracking-[0.3em] uppercase text-gray-400 mb-4 block">Место встречи</span>
-                    <h3 class="rounded-text text-4xl text-accent-green mb-2">Голицын Клуб</h3>
+                    <h3 class="rounded-text text-4xl text-accent-red mb-2">Голицын Клуб</h3>
                     <p class="font-bold text-xl mb-4 tracking-widest text-accent-red uppercase">Шатер Еловый</p>
                     
                     <div class="mb-6 text-gray-600">
                         <p class="flex items-center justify-center">
-                            <svg class="w-5 h-5 mr-2 text-accent-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+                            <svg class="w-5 h-5 mr-2 text-accent-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
                             47 км, Минское ш., д. 45, Голицыно
                         </p>
                     </div>
@@ -747,7 +747,7 @@
             <div class="timeline-row timeline-row-left" data-aos="fade-left">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <div class="text-accent-green font-bold text-4xl mb-1 uppercase tracking-widest">15:00</div>
+                    <div class="text-accent-red font-bold text-4xl mb-1 uppercase tracking-widest">15:00</div>
                     <h3 class="serif text-2xl text-accent-red">Сбор гостей</h3>
                 </div>
             </div>
@@ -756,7 +756,7 @@
             <div class="timeline-row timeline-row-right" data-aos="fade-left">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <div class="text-accent-green font-bold text-4xl mb-1 uppercase tracking-widest">16:00</div>
+                    <div class="text-accent-red font-bold text-4xl mb-1 uppercase tracking-widest">16:00</div>
                     <h3 class="serif text-2xl text-accent-red">Церемония</h3>
                 </div>
             </div>
@@ -765,7 +765,7 @@
             <div class="timeline-row timeline-row-left" data-aos="fade-left">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <div class="text-accent-green font-bold text-4xl mb-1 uppercase tracking-widest">17:00</div>
+                    <div class="text-accent-red font-bold text-4xl mb-1 uppercase tracking-widest">17:00</div>
                     <h3 class="serif text-2xl text-accent-red">Свадебный ужин</h3>
                 </div>
             </div>
@@ -774,7 +774,7 @@
             <div class="timeline-row timeline-row-right" data-aos="fade-left">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <div class="text-accent-green font-bold text-4xl mb-1 uppercase tracking-widest">23:00</div>
+                    <div class="text-accent-red font-bold text-4xl mb-1 uppercase tracking-widest">23:00</div>
                     <h3 class="serif text-2xl text-accent-red">Завершение вечера</h3>
                 </div>
             </div>
